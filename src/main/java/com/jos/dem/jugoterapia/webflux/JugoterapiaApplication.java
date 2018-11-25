@@ -13,44 +13,14 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import java.util.List;
-import java.util.Arrays;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
 @SpringBootApplication
 public class JugoterapiaApplication {
 
-  @Autowired
-  private CategoryRepository categoryRepository;
-
-  private List<Category> categories = Arrays.asList(
-      new Category(1, "Curativos"),
-      new Category(2, "Energizantes"),
-      new Category(3, "Saludables"),
-      new Category(4, "Estimulantes"));
-
 	public static void main(String[] args) {
     SpringApplication.run(JugoterapiaApplication.class, args);
 	}
-
-  @Bean
-  CommandLineRunner start(){
-    return args -> {
-      categoryRepository.findById(1)
-        .subscribe(
-            curativos -> System.out.println("Curativos: " + curativos),
-            error -> error.printStackTrace(),
-            () -> categories.forEach(category -> categoryRepository.save(category).subscribe())
-        );
-    };
-  }
 
 }
