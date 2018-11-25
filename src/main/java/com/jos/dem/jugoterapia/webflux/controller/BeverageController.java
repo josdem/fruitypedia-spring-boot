@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.service.CategoryService;
+import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/beverages")
+public class BeverageController {
 
   @Autowired
-  private CategoryService categoryService;
+  private BeverageService beverageService;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GetMapping("/")
-  public Flux<Category> getCategories(){
-    log.info("Listing categories");
-    return categoryService.findAll();
+  public Flux<Beverage> getBeverages(){
+    log.info("Listing beverages");
+    return beverageService.findAll();
   }
 
 }
