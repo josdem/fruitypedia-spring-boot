@@ -31,10 +31,10 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   private CategoryRepository categoryRepository;
 
   private List<Category> categories = Arrays.asList(
-      new Category(1, "Curativos"),
-      new Category(2, "Energizantes"),
-      new Category(3, "Saludables"),
-      new Category(4, "Estimulantes"));
+      new Category(1, "Curativos", null),
+      new Category(2, "Energizantes", null),
+      new Category(3, "Saludables", null),
+      new Category(4, "Estimulantes", null));
 
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
