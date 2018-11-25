@@ -31,6 +31,12 @@ public class JugoterapiaApplication {
   @Autowired
   private CategoryRepository categoryRepository;
 
+  private List<Category> categories = Arrays.asList(
+      new Category(1, "Curativos"),
+      new Category(2, "Energizantes"),
+      new Category(3, "Saludables"),
+      new Category(4, "Estimulantes"));
+
 	public static void main(String[] args) {
     SpringApplication.run(JugoterapiaApplication.class, args);
 	}
@@ -38,12 +44,12 @@ public class JugoterapiaApplication {
   @Bean
   CommandLineRunner start(){
     return args -> {
-      categoryRepository.deleteAll().subscribe();
-
-      Arrays.asList(new Category(1, "Curativos"), new Category(2, "Energizantes"), new Category(3, "Saludables"), new Category(4, "Estimulantes"))
-        .forEach(category -> categoryRepository.save(category).subscribe());
-
-      categoryRepository.findAll().log().subscribe(System.out::println);
+      categoryRepository.findById(1)
+        .subscribe(
+            curativos -> System.out.println("Curativos: " + curativos),
+            error -> error.printStackTrace(),
+            () -> categories.forEach(category -> categoryRepository.save(category).subscribe())
+        );
     };
   }
 
