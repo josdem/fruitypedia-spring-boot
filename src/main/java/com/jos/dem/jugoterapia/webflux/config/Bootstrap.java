@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
+import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
 @Component
@@ -30,8 +31,11 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   @Autowired
   private CategoryRepository categoryRepository;
 
+  private List<Beverage> beverages = Arrays.asList(
+      new Beverage(1, "Jugo para evitar los calambres", "3 tallos de apio \n 1/4 de pepino", "Mezcla 3 tallos de apio y 1/4 de pepino y procésalos en el extractor de jugos. Si lo deseas puedes debajarlo con agua"));
+
   private List<Category> categories = Arrays.asList(
-      new Category(1, "Curativos", null),
+      new Category(1, "Curativos", beverages),
       new Category(2, "Energizantes", null),
       new Category(3, "Saludables", null),
       new Category(4, "Estimulantes", null));
