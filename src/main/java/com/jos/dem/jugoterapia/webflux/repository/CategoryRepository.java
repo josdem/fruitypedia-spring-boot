@@ -11,25 +11,6 @@
   limitations under the License.
 */
 
-package com.jos.dem.jugoterapia.webflux.model;
+package com.jos.dem.jugoterapia.webflux.repository;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
-@Data
-@Document
-@NoArgsContructor
-@AllArgsConstructor
-public class Beverage {
-
-  @Id
-  private Integer id;
-  private String name;
-  private String ingredients;
-  private String recipe;
-
-}
+public interface CategoryRepository extends ReactiveMongoRepository<Category, Integer> {}
