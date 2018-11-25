@@ -18,18 +18,18 @@ import reactor.core.publisher.Flux;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.service.CategoryService;
-import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
+import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.service.BeverageService;
+import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class BeverageServiceImpl implements BeverageService {
 
   @Autowired
-  private CategoryRepository categoryRepository;
+  private BeverageRepository beverageRepository;
 
-  public Flux<Category> findAll(){
-    return categoryRepository.findAll();
+  public Flux<Beverage> findAll(){
+    return beverageRepository.findAll();
   }
 
 }
