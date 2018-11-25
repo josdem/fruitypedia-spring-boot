@@ -16,6 +16,7 @@ package com.jos.dem.jugoterapia.webflux.controller;
 import reactor.core.publisher.Flux;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class CategoryController {
   public Flux<Category> getCategories(){
     log.info("Listing categories");
     return categoryService.findAll();
+  }
+
+  @GetMapping(value="/{id}/beverages")
+  public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
+    log.info("Listing beverages by category: " + categoryId);
+    Category category = categoryService.findById(categoryId);
+    return beverageService.findByCategory(category);
   }
 
 }
