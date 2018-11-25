@@ -21,9 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @Autowired
   private CategoryService categoryService;
