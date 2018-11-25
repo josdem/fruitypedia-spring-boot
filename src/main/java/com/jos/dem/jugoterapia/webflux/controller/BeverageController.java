@@ -13,7 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +35,10 @@ public class BeverageController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  @GetMapping("/")
-  public Flux<Beverage> getBeverages(){
-    log.info("Listing beverages");
-    return beverageService.findAll();
+  @GetMapping("/{id}")
+  public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
+    log.info("Listing beverages by id: " + beverageId);
+    return beverageService.findById(beverageId);
   }
 
 }
