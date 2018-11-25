@@ -13,13 +13,16 @@
 
 package com.jos.dem.jugoterapia.webflux.service;
 
+import reactor.core.publisher.Flux;
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
 @Service
-public class CagtegoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
   @Autowired
   private CategoryRepository categoryRepository;

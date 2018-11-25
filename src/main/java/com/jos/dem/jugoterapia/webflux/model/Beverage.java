@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 
 @Data
 @Document
-@NoArgsContructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class Beverage {
 

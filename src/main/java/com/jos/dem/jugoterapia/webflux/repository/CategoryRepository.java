@@ -13,4 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.repository;
 
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import com.jos.dem.jugoterapia.webflux.model.Category;
+
 public interface CategoryRepository extends ReactiveMongoRepository<Category, Integer> {}

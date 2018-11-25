@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import reactor.core.publisher.Flux;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +38,7 @@ public class CategoryController {
   @GetMapping("/")
   public Flux<Category> getCategories(){
     log.info("Listing categories");
-    categoryService.findAll();
+    return categoryService.findAll();
   }
 
 }
