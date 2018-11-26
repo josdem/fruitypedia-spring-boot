@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
+import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,8 @@ public class CategoryController {
 
   @Autowired
   private CategoryService categoryService;
+  @Autowired
+  private BeverageService beverageService;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -46,8 +49,9 @@ public class CategoryController {
   @GetMapping(value="/{id}/beverages")
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: " + categoryId);
-    Category category = categoryService.findById(categoryId);
-    return beverageService.findByCategory(category);
+    return categoryService.findById(categoryId)
+      .subscribe(category -> beverageService.findByCategory(category)
+      .subscribe());
   }
 
 }
