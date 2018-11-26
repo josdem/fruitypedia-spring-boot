@@ -21,4 +21,5 @@ import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface BeverageService {
   Mono<Beverage> findById(Integer beverageId);
+  Flux<Beverage> findByCategory(Integer categoryId);
 }

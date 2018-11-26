@@ -33,7 +33,4 @@ public class Category {
   private Integer id;
   private String name;
 
-  @JsonIgnore
-  private List<Beverage> beverages;
-
 }

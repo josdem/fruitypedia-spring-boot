@@ -31,5 +31,6 @@ public class Beverage {
   private String name;
   private String ingredients;
   private String recipe;
+  private Integer category;
 
 }

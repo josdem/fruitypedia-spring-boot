@@ -49,8 +49,7 @@ public class CategoryController {
   @GetMapping(value="/{id}/beverages")
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: " + categoryId);
-    Category category = categoryService.findById(categoryId).block();
-    return Flux.fromIterable(category.getBeverages());
+    return beverageService.findByCategory(categoryId);
   }
 
 }

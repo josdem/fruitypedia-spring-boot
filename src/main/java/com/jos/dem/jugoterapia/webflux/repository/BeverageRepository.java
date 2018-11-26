@@ -13,7 +13,11 @@
 
 package com.jos.dem.jugoterapia.webflux.repository;
 
+import reactor.core.publisher.Flux;
+
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 
-public interface BeverageRepository extends ReactiveMongoRepository<Beverage, Integer> {}
+public interface BeverageRepository extends ReactiveMongoRepository<Beverage, Integer> {
+  Flux<Beverage> findByCategory(Integer category);
+}
