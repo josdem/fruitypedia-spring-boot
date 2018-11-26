@@ -14,8 +14,10 @@
 package com.jos.dem.jugoterapia.webflux.service;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface CategoryService {
   Flux<Category> findAll();
+  Mono<Category> findById(Integer categoryId);
 }

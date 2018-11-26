@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
 
   public Flux<Category> findAll(){
     return categoryRepository.findAll();
+  }
+
+  public Mono<Category> findById(Integer categoryId){
+    return categoryRepository.findById(categoryId);
   }
 
 }
