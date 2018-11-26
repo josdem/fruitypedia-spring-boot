@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -31,6 +33,7 @@ public class Beverage {
   private String name;
   private String ingredients;
   private String recipe;
+  @JsonIgnore
   private Integer categoryId;
 
 }
