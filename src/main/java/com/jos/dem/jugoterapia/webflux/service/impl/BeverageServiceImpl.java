@@ -13,7 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class BeverageServiceImpl implements BeverageService {
   @Autowired
   private BeverageRepository beverageRepository;
 
-  public Flux<Beverage> findAll(){
-    return beverageRepository.findAll();
+  public Mono<Beverage> findById(Integer beverageId){
+    return beverageRepository.findById(beverageId);
   }
 
 }

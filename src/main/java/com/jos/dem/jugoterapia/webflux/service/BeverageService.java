@@ -13,9 +13,9 @@
 
 package com.jos.dem.jugoterapia.webflux.service;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 
 public interface BeverageService {
-  Flux<Beverage> findAll();
+  Mono<Beverage> findById(Integer beverageId);
 }
