@@ -50,7 +50,7 @@ public class CategoryController {
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: " + categoryId);
     Category category = categoryService.findById(categoryId).block();
-    return beverageService.findByCategory(category);
+    return Flux.fromIterable(category.getBeverages());
   }
 
 }

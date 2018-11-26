@@ -34,9 +34,5 @@ public class BeverageServiceImpl implements BeverageService {
     return beverageRepository.findById(beverageId);
   }
 
-  public Flux<Beverage> findByCategory(Category category){
-    return beverageRepository.findByCategory(category);
-  }
-
 }
 
