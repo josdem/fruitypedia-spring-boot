@@ -16,56 +16,30 @@ package com.jos.dem.jugoterapia.webflux.config;
 import java.util.List;
 import java.util.Arrays;
 
+import reactor.core.publisher.Mono;
+
 import org.springframework.stereotype.Component;
 import org.springframework.context.ApplicationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
-import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 
 @Component
 public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
 
   @Autowired
   private CategoryRepository categoryRepository;
-  @Autowired
-  private BeverageRepository beverageRepository;
-
-  private List<Beverage> beverages = Arrays.asList(
-      new Beverage(1, "Jugo para evitar los calambres", "3 tallos de apio \n 1/4 de pepino", "Mezcla 3 tallos de apio y 1/4 de pepino y procésalos en el extractor de jugos. Si lo deseas puedes debajarlo con agua", 1));
-
-  private List<Category> categories = Arrays.asList(
-      new Category(1, "Curativos"),
-      new Category(2, "Energizantes"),
-      new Category(3, "Saludables"),
-      new Category(4, "Estimulantes"));
 
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
-    System.out.println("Loading data...");
+    System.out.println("Loading categories...");
     validateCategories();
-    validateBeverages();
   }
 
   private void validateCategories(){
-    categoryRepository.findById(1)
-        .subscribe(
-            curativos -> System.out.println("Curativos: " + curativos),
-            error -> error.printStackTrace(),
-            () -> categories.forEach(category -> categoryRepository.save(category).subscribe())
-        );
-  }
-
-  private void validateBeverages(){
-    beverageRepository.findById(1)
-        .subscribe(
-            juice -> System.out.println("Beverage: " + juice),
-            error -> error.printStackTrace(),
-            () -> beverages.forEach(beverage -> beverageRepository.save(beverage).subscribe())
-        );
+    categoryRepository.findById(1).subscribe(curativos -> System.out.println("Curativos: " + curativos));
   }
 
 }
