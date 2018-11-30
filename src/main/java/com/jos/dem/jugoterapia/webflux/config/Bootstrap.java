@@ -39,7 +39,7 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   }
 
   private void validateCategories(){
-    categoryRepository.findById(1).subscribe(curativos -> System.out.println("Curativos: " + curativos));
+    categoryRepository.findAll().subscribe(category -> System.out.println(category));
   }
 
 }
