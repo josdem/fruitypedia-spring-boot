@@ -34,7 +34,7 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
 
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
-    System.out.println("Loading categories...");
+    System.out.println("Trying to load categories...");
     validateCategories();
   }
 
