@@ -40,7 +40,7 @@ public class BeverageController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  @ApiImplicitParam(name = "beverageId", value = "Beverage's id", required = true, dataType = "Long", paramType = "path")
+  @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")
   public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
     log.info("Listing beverages by id: " + beverageId);
