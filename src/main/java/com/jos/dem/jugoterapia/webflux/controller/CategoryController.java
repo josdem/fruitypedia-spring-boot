@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import io.swagger.annotations.Api;
+
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
@@ -29,6 +31,7 @@ import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Api(description="knows how receive manage category requests")
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
