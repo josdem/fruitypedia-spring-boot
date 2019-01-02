@@ -18,14 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
-@Data
 @Document
-@NoArgsConstructor
-@AllArgsConstructor
 public class Beverage {
 
   @Id
@@ -35,5 +28,21 @@ public class Beverage {
   private String recipe;
   @JsonIgnore
   private Integer categoryId;
+
+  public Integer getId(){
+    return id;
+  }
+
+  public String getName(){
+    return name;
+  }
+
+  public String getIngredients(){
+    return ingredients;
+  }
+
+  public String getRecipe(){
+    return recipe;
+  }
 
 }
