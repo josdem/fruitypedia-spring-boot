@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
@@ -49,6 +50,7 @@ public class CategoryController {
     return categoryService.findAll();
   }
 
+  @ApiImplicitParam(name = "categoryId", value = "Category's id", required = true, dataType = "Long", paramType = "path")
   @GetMapping(value="/{id}/beverages")
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: " + categoryId);
