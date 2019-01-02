@@ -21,12 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Api(description="knows how receive manage beverage requests")
 @RestController
 @RequestMapping("/beverages")
 public class BeverageController {
@@ -36,6 +40,7 @@ public class BeverageController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
+  @ApiImplicitParam(name = "beverageId", value = "Beverage's id", required = true, dataType = "Long", paramType = "path")
   @GetMapping("/{id}")
   public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
     log.info("Listing beverages by id: " + beverageId);
