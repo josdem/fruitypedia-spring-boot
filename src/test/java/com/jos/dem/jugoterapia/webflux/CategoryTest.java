@@ -43,12 +43,13 @@ public class CategoryTest {
   @Mock
   private CategoryRepository categoryRepository;
 
-  private Category category = new Category(1, "Curativos");
+  private Integer categoryId = 1;
+  private Category category = new Category(categoryId, "Curativos");
 
   @BeforeEach
-	void setup() {
+  void setup() {
     MockitoAnnotations.initMocks(this);
-	}
+  }
 
   @Test
   @DisplayName("Should find all categories")
@@ -61,9 +62,9 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find category by id")
   void shouldFindCategoryById() throws Exception {
-    when(categoryRepository.findById(1)).thenReturn(Mono.just(category));
-    service.findById(1);
-    verify(categoryRepository).findById(1);
+    when(categoryRepository.findById(categoryId)).thenReturn(Mono.just(category));
+    service.findById(categoryId);
+    verify(categoryRepository).findById(categoryId);
   }
 
 }
