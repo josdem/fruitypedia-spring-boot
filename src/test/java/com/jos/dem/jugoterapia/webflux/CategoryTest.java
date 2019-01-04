@@ -13,23 +13,42 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+
+import java.util.List;
+import java.util.Arrays;
+
+import reactor.core.publisher.Flux;
+
+import org.mockito.Mock;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.impl.CategoryServiceImpl;
+import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
 public class CategoryTest {
 
+  @InjectMocks
   private CategoryService service = new CategoryServiceImpl();
 
   @Mock
-  private CategoryRepository CategoryRepository;
+  private CategoryRepository categoryRepository;
 
-  @Before
-  public void setup(){
-    initializeMock();
-  }
+  @BeforeEach
+	void init_mocks() {
+    MockitoAnnotations.initMocks(this);
+	}
 
   @Test
   void shouldFindAllCategories() throws Exception {
+    when(categoryRepository.findAll()).thenReturn(Flux.just(new Category(1, "Curativos")));
     service.findAll();
     verify(categoryRepository).findAll();
   }

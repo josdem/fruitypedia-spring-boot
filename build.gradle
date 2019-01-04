@@ -3,6 +3,7 @@ buildscript {
     springBootVersion = '2.1.1.RELEASE'
     junitJupiterVersion = '5.3.2'
     springfoxVersion = '2.9.2'
+    mockitoVersion = '2.23.4'
   }
   repositories {
     mavenCentral()
@@ -24,16 +25,24 @@ repositories {
   mavenCentral()
 }
 
-
 dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
   implementation('org.springframework.boot:spring-boot-starter-web')
   implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
   implementation'org.codehaus.groovy:groovy-all:2.5.5'
-  implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-  implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+  implementation "io.springfox:springfox-swagger2:$springfoxVersion"
+  implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
   testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
   testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+  testCompile "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+}
+
+test {
+  useJUnitPlatform()
+
+  reports {
+    html.enabled = true
+  }
 }
