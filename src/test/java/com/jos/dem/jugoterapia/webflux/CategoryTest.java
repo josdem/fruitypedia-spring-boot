@@ -19,6 +19,7 @@ import static org.mockito.Mockito.verify;
 import java.util.List;
 import java.util.Arrays;
 
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ import org.mockito.MockitoAnnotations;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
@@ -47,10 +49,19 @@ public class CategoryTest {
 	}
 
   @Test
+  @DisplayName("Should find all categories")
   void shouldFindAllCategories() throws Exception {
     when(categoryRepository.findAll()).thenReturn(Flux.just(new Category(1, "Curativos")));
     service.findAll();
     verify(categoryRepository).findAll();
+  }
+
+  @Test
+  @DisplayName("Should find category by id")
+  void shouldFindCategoryById() throws Exception {
+    when(categoryRepository.findById(1)).thenReturn(Mono.just(new Category(1, "Curativos")));
+    service.findById(1);
+    verify(categoryRepository).findById(1);
   }
 
 }
