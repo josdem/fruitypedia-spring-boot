@@ -20,9 +20,18 @@ public class CategoryTest {
 
   private CategoryService service = new CategoryServiceImpl();
 
+  @Mock
+  private CategoryRepository CategoryRepository;
+
+  @Before
+  public void setup(){
+    initializeMock();
+  }
+
   @Test
   void shouldFindAllCategories() throws Exception {
-
+    service.findAll();
+    verify(categoryRepository).findAll();
   }
 
 }
