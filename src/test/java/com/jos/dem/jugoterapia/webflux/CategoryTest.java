@@ -42,7 +42,7 @@ public class CategoryTest {
   private CategoryRepository categoryRepository;
 
   @BeforeEach
-	void init_mocks() {
+	void setup() {
     MockitoAnnotations.initMocks(this);
 	}
 
