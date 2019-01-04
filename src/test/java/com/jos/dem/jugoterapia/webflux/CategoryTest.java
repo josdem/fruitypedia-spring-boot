@@ -43,6 +43,8 @@ public class CategoryTest {
   @Mock
   private CategoryRepository categoryRepository;
 
+  private Category category = new Category(1, "Curativos");
+
   @BeforeEach
 	void setup() {
     MockitoAnnotations.initMocks(this);
@@ -51,7 +53,7 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find all categories")
   void shouldFindAllCategories() throws Exception {
-    when(categoryRepository.findAll()).thenReturn(Flux.just(new Category(1, "Curativos")));
+    when(categoryRepository.findAll()).thenReturn(Flux.just(category));
     service.findAll();
     verify(categoryRepository).findAll();
   }
@@ -59,7 +61,7 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find category by id")
   void shouldFindCategoryById() throws Exception {
-    when(categoryRepository.findById(1)).thenReturn(Mono.just(new Category(1, "Curativos")));
+    when(categoryRepository.findById(1)).thenReturn(Mono.just(category));
     service.findById(1);
     verify(categoryRepository).findById(1);
   }
