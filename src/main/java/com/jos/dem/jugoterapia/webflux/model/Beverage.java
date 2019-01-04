@@ -29,6 +29,14 @@ public class Beverage {
   @JsonIgnore
   private Integer categoryId;
 
+  public Beverage(Integer id, String name, String ingredients, String recipe, Integer categoryId){
+    this.id = id;
+    this.name = name;
+    this.ingredients = ingredients;
+    this.recipe = recipe;
+    this.categoryId = categoryId;
+  }
+
   public Integer getId(){
     return id;
   }
