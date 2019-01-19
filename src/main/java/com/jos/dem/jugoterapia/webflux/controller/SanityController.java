@@ -20,15 +20,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Api(description="knows how to respond to sanity checks")
 @RestController
 @RequestMapping("/sanity")
 public class SanityController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
+  @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping("/{ping}")
   Mono<String> check(@PathVariable("ping") String ping){
     log.info(ping);
