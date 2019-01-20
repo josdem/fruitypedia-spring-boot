@@ -19,5 +19,4 @@ import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface CategoryService {
   Flux<Category> findAll();
-  Mono<Category> findById(Integer categoryId);
 }

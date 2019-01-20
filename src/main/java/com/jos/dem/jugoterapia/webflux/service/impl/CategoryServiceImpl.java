@@ -33,9 +33,5 @@ public class CategoryServiceImpl implements CategoryService {
     return categoryRepository.findAll();
   }
 
-  public Mono<Category> findById(Integer categoryId){
-    return categoryRepository.findById(categoryId);
-  }
-
 }
 

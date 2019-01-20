@@ -59,13 +59,5 @@ public class CategoryTest {
     verify(categoryRepository).findAll();
   }
 
-  @Test
-  @DisplayName("Should find category by id")
-  void shouldFindCategoryById() throws Exception {
-    when(categoryRepository.findById(categoryId)).thenReturn(Mono.just(category));
-    service.findById(categoryId);
-    verify(categoryRepository).findById(categoryId);
-  }
-
 }
 
