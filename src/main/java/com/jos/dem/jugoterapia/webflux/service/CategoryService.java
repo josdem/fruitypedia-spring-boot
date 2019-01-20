@@ -18,5 +18,5 @@ import reactor.core.publisher.Mono;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface CategoryService {
-  Flux<Category> findAll();
+  Flux<Category> findByI18n(String language);
 }

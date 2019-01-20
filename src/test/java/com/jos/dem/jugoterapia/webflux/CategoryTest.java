@@ -44,7 +44,8 @@ public class CategoryTest {
   private CategoryRepository categoryRepository;
 
   private Integer categoryId = 1;
-  private Category category = new Category(categoryId, "Curativos");
+  private String language = "es";
+  private Category category = new Category(categoryId, language, "Curativos");
 
   @BeforeEach
   void setup() {
@@ -54,9 +55,9 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find all categories")
   void shouldFindAllCategories() throws Exception {
-    when(categoryRepository.findAll()).thenReturn(Flux.just(category));
-    service.findAll();
-    verify(categoryRepository).findAll();
+    when(categoryRepository.findByI18n(language)).thenReturn(Flux.just(category));
+    service.findByI18n(language);
+    verify(categoryRepository).findByI18n(language);
   }
 
 }

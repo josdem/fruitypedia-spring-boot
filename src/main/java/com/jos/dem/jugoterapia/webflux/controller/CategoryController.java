@@ -47,7 +47,7 @@ public class CategoryController {
   @GetMapping("/")
   public Flux<Category> getCategories(){
     log.info("Listing categories");
-    return categoryService.findAll();
+    return categoryService.findByI18n("es");
   }
 
   @ApiImplicitParam(name = "id", value = "Category's id", required = true, dataType = "int", paramType = "path")

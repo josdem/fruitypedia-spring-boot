@@ -29,8 +29,8 @@ public class CategoryServiceImpl implements CategoryService {
   @Autowired
   private CategoryRepository categoryRepository;
 
-  public Flux<Category> findAll(){
-    return categoryRepository.findAll();
+  public Flux<Category> findByI18n(String language){
+    return categoryRepository.findByI18n(language);
   }
 
 }
