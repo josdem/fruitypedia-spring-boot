@@ -15,6 +15,8 @@ package com.jos.dem.jugoterapia.webflux.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,8 +25,9 @@ public class Category {
 
   @Id
   private Integer id;
-  private String i18n;
   private String name;
+  @JsonIgnore
+  private String i18n;
 
   public Category(Integer id, String i18n, String name){
     this.id = id;
