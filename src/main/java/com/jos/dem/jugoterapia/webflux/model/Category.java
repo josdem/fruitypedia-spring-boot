@@ -23,15 +23,21 @@ public class Category {
 
   @Id
   private Integer id;
+  private String i18n;
   private String name;
 
-  public Category(Integer id, String name){
+  public Category(Integer id, String i18n, String name){
     this.id = id;
+    this.i18n = i18n;
     this.name = name;
   }
 
   public Integer getId(){
     return id;
+  }
+
+  public String getI18n(){
+    return i18n;
   }
 
   public String getName(){
