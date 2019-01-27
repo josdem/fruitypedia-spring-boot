@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
 @Component
-public class LocaleResolver {
+public class LanguageResolver {
 
   public String resolve(ServerWebExchange exchange){
     String language = exchange.getRequest().getHeaders().getFirst("Accept-Language");

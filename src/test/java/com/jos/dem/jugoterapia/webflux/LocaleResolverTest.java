@@ -27,11 +27,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
-import com.jos.dem.jugoterapia.webflux.util.LocaleResolver;
+import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
 
-class LocaleResolverTest {
+class LanguageResolverTest {
 
-  private LocaleResolver localeResolver = new LocaleResolver();
+  private LanguageResolver languageResolver = new LanguageResolver();
 
   @Mock
   private ServerWebExchange exchange;
@@ -51,13 +51,13 @@ class LocaleResolverTest {
   @DisplayName("Should read English language")
   void shouldReadEnglish() throws Exception {
     when(headers.getFirst("Accept-Language")).thenReturn("en");
-    assertEquals("en",localeResolver.resolve(exchange));
+    assertEquals("en",languageResolver.resolve(exchange));
   }
 
   @Test
   @DisplayName("Should read Spanish as default language")
   void shouldReadSpanishAsDefault() throws Exception {
-    assertEquals("es",localeResolver.resolve(exchange));
+    assertEquals("es",languageResolver.resolve(exchange));
   }
 
 }

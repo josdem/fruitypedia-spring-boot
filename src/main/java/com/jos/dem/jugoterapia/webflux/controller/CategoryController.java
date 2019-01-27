@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiImplicitParam;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.util.LocaleResolver;
+import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
@@ -44,14 +44,14 @@ public class CategoryController {
   @Autowired
   private BeverageService beverageService;
   @Autowired
-  private LocaleResolver localeResolver;
+  private LanguageResolver languageResolver;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GetMapping("/")
   public Flux<Category> getCategories(ServerWebExchange exchange){
     log.info("Listing categories");
-    String language = localeResolver.resolve(exchange);
+    String language = languageResolver.resolve(exchange);
     return categoryService.findByI18n(language);
   }
 
