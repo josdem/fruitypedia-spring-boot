@@ -15,6 +15,7 @@ package com.jos.dem.jugoterapia.webflux.controller;
 
 import reactor.core.publisher.Flux;
 
+import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ import io.swagger.annotations.ApiImplicitParam;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.util.LocaleResolver;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
@@ -41,13 +43,16 @@ public class CategoryController {
   private CategoryService categoryService;
   @Autowired
   private BeverageService beverageService;
+  @Autowired
+  private LocaleResolver localeResolver;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GetMapping("/")
-  public Flux<Category> getCategories(){
+  public Flux<Category> getCategories(ServerWebExchange exchange){
     log.info("Listing categories");
-    return categoryService.findByI18n("es");
+    String language = localeResolver.resolve(exchange);
+    return categoryService.findByI18n(language);
   }
 
   @ApiImplicitParam(name = "id", value = "Category's id", required = true, dataType = "int", paramType = "path")
