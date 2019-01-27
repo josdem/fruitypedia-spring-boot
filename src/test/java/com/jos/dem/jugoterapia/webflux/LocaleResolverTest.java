@@ -54,5 +54,13 @@ class LocaleResolverTest {
     assertEquals("en",localeResolver.resolve(exchange));
   }
 
+  @Test
+  @DisplayName("Should read Spanish as default language")
+  void shouldReadSpanishAsDefault() throws Exception {
+    when(request.getHeaders()).thenReturn(headers);
+    when(exchange.getRequest()).thenReturn(request);
+    assertEquals("es",localeResolver.resolve(exchange));
+  }
+
 }
 
