@@ -25,9 +25,31 @@ class LanguageResolverTest {
   private LanguageResolver languageResolver = new LanguageResolver();
 
   @Test
-  @DisplayName("Should find all categories")
+  @DisplayName("Should select English if not language")
   void shouldSelectEnglishIfNoLanguage() throws Exception {
     String language = languageResolver.resolve(null);
     assertEquals("en", language);
   }
+
+  @Test
+  @DisplayName("Should select English if empty language")
+  void shouldSelectEnglishIfEmptyLanguage() throws Exception {
+    String language = languageResolver.resolve("");
+    assertEquals("en", language);
+  }
+
+  @Test
+  @DisplayName("Should select English if other language")
+  void shouldSelectEnglishIfOtherLanguage() throws Exception {
+    String language = languageResolver.resolve("ru");
+    assertEquals("en", language);
+  }
+
+  @Test
+  @DisplayName("Should select Spanish language")
+  void shouldSelectSpanishLanguage() throws Exception {
+    String language = languageResolver.resolve("es");
+    assertEquals("es", language);
+  }
+
 }
