@@ -13,6 +13,9 @@
 
 package com.jos.dem.jugoterapia.webflux.util;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LanguageResolver {
 
   public String resolve(String language){
