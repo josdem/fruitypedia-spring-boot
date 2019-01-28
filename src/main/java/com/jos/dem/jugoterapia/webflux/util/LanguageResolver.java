@@ -16,7 +16,7 @@ package com.jos.dem.jugoterapia.webflux.util;
 public class LanguageResolver {
 
   public String resolve(String language){
-    return null;
+    return "en";
   }
 
 }
