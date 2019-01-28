@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
+import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
+
 class LanguageResolverTest {
 
   private LanguageResolver languageResolver = new LanguageResolver();
