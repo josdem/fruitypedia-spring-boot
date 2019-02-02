@@ -30,7 +30,7 @@ import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Api(description="knows how receive manage beverage requests")
+@Api(tags = {"knows how receive manage beverage requests"})
 @RestController
 @RequestMapping("/beverages")
 public class BeverageController {
@@ -43,7 +43,7 @@ public class BeverageController {
   @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")
   public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
-    log.info("Listing beverages by id: " + beverageId);
+    log.info("Listing beverages by id: {0}", beverageId);
     return beverageService.findById(beverageId);
   }
 
