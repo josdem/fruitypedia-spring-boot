@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 

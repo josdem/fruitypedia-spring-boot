@@ -13,8 +13,6 @@
 
 package com.jos.dem.jugoterapia.webflux.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.Id;
