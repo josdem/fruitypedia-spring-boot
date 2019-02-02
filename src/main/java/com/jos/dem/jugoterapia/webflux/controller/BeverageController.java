@@ -43,7 +43,7 @@ public class BeverageController {
   @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")
   public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
-    log.info("Listing beverages by id: {0}", beverageId);
+    log.info("Listing beverages by id: {}", beverageId);
     return beverageService.findById(beverageId);
   }
 

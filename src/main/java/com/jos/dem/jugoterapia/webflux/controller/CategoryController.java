@@ -63,7 +63,7 @@ public class CategoryController {
   @ApiImplicitParam(name = "id", value = "Category's id", required = true, dataType = "int", paramType = "path")
   @GetMapping(value="/{id}/beverages")
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
-    log.info("Listing beverages by category: {0}", categoryId);
+    log.info("Listing beverages by category: {}", categoryId);
     return beverageService.findByCategoryId(categoryId);
   }
 
