@@ -14,6 +14,7 @@
 package com.jos.dem.jugoterapia.webflux.service;
 
 import reactor.core.publisher.Flux;
+import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface CategoryService {
   Flux<Category> findByI18n(String language);
