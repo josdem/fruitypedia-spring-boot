@@ -5,4 +5,5 @@ addons:
     organization: "josdem"
     token:
       secure: 2a1f7f6bd179fea3210cbe477c5fd34001215ce0
-      script: sonar-scanner
+      script:
+        - ./gradlew sonarqube
