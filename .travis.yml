@@ -1,9 +1,4 @@
 language: java
 jdk: openjdk8
-addons:
-  sonarcloud:
-    organization: "josdem"
-    token:
-      secure: 2a1f7f6bd179fea3210cbe477c5fd34001215ce0
-      script:
-        - ./gradlew sonarqube
+script:
+  - ./gradlew sonarqube
