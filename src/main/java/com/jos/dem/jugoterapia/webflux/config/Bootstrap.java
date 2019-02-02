@@ -13,18 +13,15 @@
 
 package com.jos.dem.jugoterapia.webflux.config;
 
-import java.util.List;
-import java.util.Arrays;
-
-import reactor.core.publisher.Mono;
-
 import org.springframework.stereotype.Component;
 import org.springframework.context.ApplicationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 
-import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
@@ -32,14 +29,16 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
   @Autowired
   private CategoryRepository categoryRepository;
 
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
   @Override
   public void onApplicationEvent(final ApplicationReadyEvent event) {
-    System.out.println("Trying to load categories...");
+    log.info("Trying to load categories...");
     validateCategories();
   }
 
   private void validateCategories(){
-    categoryRepository.findAll().subscribe(category -> System.out.println(category));
+    categoryRepository.findAll().subscribe(System.out::println);
   }
 
 }
