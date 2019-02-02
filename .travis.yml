@@ -7,4 +7,4 @@ addons:
       secure: 2a1f7f6bd179fea3210cbe477c5fd34001215ce0
       script:
         # other script steps might be done before running the actual analysis
-        #   - sonar-scanner
+        gradle sonarqube
