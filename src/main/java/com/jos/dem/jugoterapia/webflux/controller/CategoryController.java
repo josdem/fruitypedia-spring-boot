@@ -15,7 +15,6 @@ package com.jos.dem.jugoterapia.webflux.controller;
 
 import reactor.core.publisher.Flux;
 
-import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +33,7 @@ import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Api(description="knows how receive manage category requests")
+@Api(tags={"knows how receive manage category requests"})
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
@@ -64,7 +63,7 @@ public class CategoryController {
   @ApiImplicitParam(name = "id", value = "Category's id", required = true, dataType = "int", paramType = "path")
   @GetMapping(value="/{id}/beverages")
   public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
-    log.info("Listing beverages by category: " + categoryId);
+    log.info("Listing beverages by category: {0}", categoryId);
     return beverageService.findByCategoryId(categoryId);
   }
 
