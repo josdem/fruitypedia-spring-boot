@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface BeverageService {
   Mono<Beverage> findById(Integer beverageId);
