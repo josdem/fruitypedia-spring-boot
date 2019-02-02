@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Api(description="knows how to respond to sanity checks")
+@Api(tags={"knows how to respond to sanity checks"})
 @RestController
 @RequestMapping("/sanity")
 public class SanityController {
@@ -35,7 +35,7 @@ public class SanityController {
 
   @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping("/{ping}")
-  Mono<String> check(@PathVariable("ping") String ping){
+  public Mono<String> check(@PathVariable("ping") String ping){
     log.info(ping);
     return Mono.just("pong");
   }
