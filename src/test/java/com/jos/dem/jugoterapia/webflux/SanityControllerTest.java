@@ -28,7 +28,7 @@ import com.jos.dem.jugoterapia.webflux.controller.SanityController;
 
 @RunWith(SpringRunner.class)
 @WebFluxTest
-public class SanityTest {
+public class SanityControllerTest {
 
   @Autowired
   private WebTestClient webClient;
