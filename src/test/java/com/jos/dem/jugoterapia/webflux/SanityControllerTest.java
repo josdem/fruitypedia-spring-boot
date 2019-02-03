@@ -22,12 +22,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.jos.dem.jugoterapia.webflux.controller.SanityController;
 
 @RunWith(SpringRunner.class)
-@WebFluxTest(SanityController.class)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class SanityControllerTest {
 
   @Autowired
