@@ -46,7 +46,7 @@ public class BeverageTest {
 
   private Integer beverageId = 66;
   private Integer categoryId = 3;
-  private Beverage beverage = new Beverage(beverageId, "Jugo nutritivo", "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas", "Lava perfectamente todos los ingrendientes", categoryId);
+  private Beverage beverage = new Beverage(beverageId, "Jugo nutritivo", "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas", "Lava perfectamente todos los ingrendientes","imageUrl",categoryId);
 
   @BeforeEach
 	void setup() {
