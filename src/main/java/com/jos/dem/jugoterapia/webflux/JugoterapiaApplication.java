@@ -13,32 +13,14 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 public class JugoterapiaApplication {
 
-  @Value("${swagger.host}")
-  private String host;
-
-	public static void main(String[] args) {
+  public static void main(String[] args) {
     SpringApplication.run(JugoterapiaApplication.class, args);
-	}
-
-  @Bean
-  public WebClient webClient() {
-    return WebClient
-      .builder()
-        .baseUrl(host)
-        .defaultHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-      .build();
   }
 
 }
