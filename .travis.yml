@@ -1,4 +1,4 @@
 language: java
 jdk: openjdk8
 script:
-  - ./gradlew sonarqube
+  - ./gradlew test jacocoTestReport sonarqube
