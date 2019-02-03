@@ -23,6 +23,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jos.dem.jugoterapia.webflux.controller.SanityController;
+import com.jos.dem.jugoterapia.webflux.controller.CategoryController;
+import com.jos.dem.jugoterapia.webflux.controller.BeverageController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,10 +32,16 @@ public class SmokeTest {
 
   @Autowired
   private SanityController sanityController;
+  @Autowired
+  private CategoryController categoryController;
+  @Autowired
+  private BeverageController beverageController;
 
   @Test
   public void shouldLoadContext() throws Exception {
     assertThat(sanityController).isNotNull();
+    assertThat(categoryController).isNotNull();
+    assertThat(beverageController).isNotNull();
   }
 
 }
