@@ -43,5 +43,14 @@ public class CategoryControllerTest {
       .expectBodyList(Category.class);
   }
 
+  @Test
+  public void shouldGetCategoriesByLanguage() throws Exception {
+    webClient.post().uri("/categoriesi/{language}", "es").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON)
+      .expectBodyList(Category.class);
+  }
+
 }
 
