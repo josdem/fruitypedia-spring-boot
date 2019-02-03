@@ -26,14 +26,16 @@ public class Beverage {
   private String name;
   private String ingredients;
   private String recipe;
+  private String image;
   @JsonIgnore
   private Integer categoryId;
 
-  public Beverage(Integer id, String name, String ingredients, String recipe, Integer categoryId){
+  public Beverage(Integer id, String name, String ingredients, String recipe, String image, Integer categoryId){
     this.id = id;
     this.name = name;
     this.ingredients = ingredients;
     this.recipe = recipe;
+    this.image = image;
     this.categoryId = categoryId;
   }
 
@@ -51,6 +53,10 @@ public class Beverage {
 
   public String getRecipe(){
     return recipe;
+  }
+
+  public String getImage(){
+    return image;
   }
 
 }
