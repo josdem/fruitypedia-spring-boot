@@ -37,7 +37,8 @@ public class SanityTest {
   public void shouldGetPong() throws Exception {
     webClient.get().uri("/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()
-		  .expectStatus().isOk();
+		  .expectStatus().isOk()
+      .expectBody(String.class).isEqualTo("pong");
   }
 
 }
