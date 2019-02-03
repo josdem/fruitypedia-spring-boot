@@ -18,8 +18,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.test.context.junit4.SpringRunner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -27,7 +27,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import com.jos.dem.jugoterapia.webflux.controller.SanityController;
 
 @RunWith(SpringRunner.class)
-@WebFluxTest
+@WebFluxTest(SanityController.class)
 public class SanityControllerTest {
 
   @Autowired
@@ -35,7 +35,7 @@ public class SanityControllerTest {
 
   @Test
   public void shouldGetPong() throws Exception {
-    webClient.get().uri("/{ping}", "ping").accept(APPLICATION_JSON)
+    webClient.get().uri("/sanity/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()
 		  .expectStatus().isOk()
       .expectBody(String.class).isEqualTo("pong");
