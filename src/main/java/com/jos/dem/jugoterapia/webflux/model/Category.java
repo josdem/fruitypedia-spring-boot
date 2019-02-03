@@ -37,10 +37,6 @@ public class Category {
     return id;
   }
 
-  public String getI18n(){
-    return i18n;
-  }
-
   public String getName(){
     return name;
   }

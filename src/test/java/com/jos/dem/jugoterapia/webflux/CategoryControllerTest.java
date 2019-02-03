@@ -28,7 +28,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.controller.CategoryController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
