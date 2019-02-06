@@ -35,9 +35,6 @@ import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.impl.CategoryServiceImpl;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class CategoryTest {
 
   @InjectMocks
@@ -50,8 +47,6 @@ public class CategoryTest {
   private String language = "es";
   private Category category = new Category(categoryId, language, "Curativos");
 
-  private Logger log = LoggerFactory.getLogger(this.getClass());
-
   @BeforeEach
   void setup() {
     MockitoAnnotations.initMocks(this);
@@ -60,7 +55,6 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find all categories")
   void shouldFindAllCategories() throws Exception {
-    log.info("user: " + System.getenv("USER"));
     when(categoryRepository.findByI18n(language)).thenReturn(Flux.just(category));
     service.findByI18n(language);
     verify(categoryRepository).findByI18n(language);
