@@ -13,12 +13,12 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assume.assumeFalse;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +35,12 @@ public class SanityControllerTest {
   @Autowired
   private WebTestClient webClient;
 
+  @Before
+  public void before() {
+    assumeFalse(System.getProperty("user.name").equals("travis"));
+  }
+
   @Test
-  @DisabledIfSystemProperty(named = "USER", matches = "travis")
   public void shouldGetPong() throws Exception {
     webClient.get().uri("/sanity/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()

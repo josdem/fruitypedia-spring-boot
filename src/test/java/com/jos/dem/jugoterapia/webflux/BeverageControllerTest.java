@@ -13,13 +13,13 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assume.assumeFalse;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 
 import org.junit.Test;
+import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,12 @@ public class BeverageControllerTest {
   @Autowired
   private WebTestClient webClient;
 
+  @Before
+  public void before() {
+    assumeFalse(System.getProperty("user.name").equals("travis"));
+  }
+
   @Test
-  @DisabledIfSystemProperty(named = "USER", matches = "travis")
   public void shouldGetBeverage() throws Exception {
     webClient.get().uri("/beverages/{id}", 83).accept(APPLICATION_JSON)
       .exchange()
