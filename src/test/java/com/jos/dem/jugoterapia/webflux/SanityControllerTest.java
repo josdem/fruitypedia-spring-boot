@@ -17,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +28,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.jos.dem.jugoterapia.webflux.controller.SanityController;
 
-@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class SanityControllerTest {
@@ -37,6 +36,7 @@ public class SanityControllerTest {
   private WebTestClient webClient;
 
   @Test
+  @DisabledIfSystemProperty(named = "USER", matches = "travis")
   public void shouldGetPong() throws Exception {
     webClient.get().uri("/sanity/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()
