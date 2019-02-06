@@ -38,7 +38,7 @@ public class BeverageControllerTest {
 
   @Before
   public void before() {
-    assumeFalse(System.getProperty("user.name").equals("travis"));
+    assumeFalse(System.getProperty("USER").equals("travis"));
   }
 
   @Test
