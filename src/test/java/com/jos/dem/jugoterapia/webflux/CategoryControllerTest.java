@@ -40,7 +40,7 @@ public class CategoryControllerTest {
 
   @Before
   public void before() {
-    assumeFalse(System.getProperty("user.name").equals("travis"));
+    assumeFalse(System.getenv("USER").equals("travis"));
   }
 
   @Test

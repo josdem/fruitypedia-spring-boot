@@ -36,10 +36,13 @@ public class BeverageControllerTest {
   @Autowired
   private WebTestClient webClient;
 
+  @Before
+  public void before() {
+    assumeFalse(System.getenv("USER").equals("travis"));
+  }
+
   @Test
   public void shouldGetBeverage() throws Exception {
-    assumeFalse(System.getProperty("USER").equals("travis"));
-
     webClient.get().uri("/beverages/{id}", 83).accept(APPLICATION_JSON)
       .exchange()
 		  .expectStatus().isOk()
