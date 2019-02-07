@@ -47,4 +47,11 @@ public class BeverageController {
     return beverageService.findById(beverageId);
   }
 
+  @ApiImplicitParam(name = "keyword", value = "Beverage ingredients contain keyword", required = true, dataType = "string", paramType = "path")
+  @GetMapping("/{id}")
+  public Mono<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
+    log.info("Listing beverages by keyword: {}", keyword);
+    return beverageService.findByIngredient(keyword);
+  }
+
 }
