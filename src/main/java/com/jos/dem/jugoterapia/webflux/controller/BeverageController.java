@@ -51,7 +51,7 @@ public class BeverageController {
   @GetMapping("/{id}")
   public Mono<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
     log.info("Listing beverages by keyword: {}", keyword);
-    return beverageService.findByIngredient(keyword);
+    return beverageService.findByIngredientKeyword(keyword);
   }
 
 }
