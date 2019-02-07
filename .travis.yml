@@ -8,14 +8,14 @@ before_script:
     --authenticationDatabase jugoterapia \
     --username  jugoterapiaUser \
     --password jug0t3r4p14DB \
-    --file src/main/resources/categories.json
+    --file 'src/main/resources/categories.json'
   - mongoimport
     --db jugoterapia \
     --collection beverage \
     --authenticationDatabase jugoterapia \
     --username  jugoterapiaUser \
     --password jug0t3r4p14DB \
-    --file beverages.json
+    --file 'src/main/resources/beverages.json'
 services:
   - mongodb
 script:
