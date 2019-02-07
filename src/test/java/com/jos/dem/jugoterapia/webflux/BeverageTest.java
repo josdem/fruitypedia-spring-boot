@@ -46,6 +46,7 @@ public class BeverageTest {
 
   private Integer beverageId = 66;
   private Integer categoryId = 3;
+  private String keyword = "pear";
   private Beverage beverage = new Beverage(beverageId, "Jugo nutritivo", "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas", "Lava perfectamente todos los ingrendientes","imageUrl",categoryId);
 
   @BeforeEach
@@ -56,17 +57,22 @@ public class BeverageTest {
   @Test
   @DisplayName("Should find by id")
   void shouldFindById() throws Exception {
-    when(beverageRepository.findById(beverageId)).thenReturn(Mono.just(beverage));
     service.findById(beverageId);
     verify(beverageRepository).findById(beverageId);
   }
 
   @Test
   @DisplayName("Should find by category id")
-  void shouldFindCategoryById() throws Exception {
-    when(beverageRepository.findById(categoryId)).thenReturn(Mono.just(beverage));
+  void shouldFindByCateogryId() throws Exception {
     service.findByCategoryId(categoryId);
     verify(beverageRepository).findByCategoryId(categoryId);
+  }
+
+  @Test
+  @DisplayName("Should find by ingredient keyword")
+  void shouldFindByIngredientKeyword() throws Exception {
+    service.findByIngredientKeyword(keyword);
+    verify(beverageRepository).findByIngredientsLikeIgnoreCase(keyword);
   }
 
 }
