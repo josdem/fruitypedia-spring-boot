@@ -59,5 +59,14 @@ public class BeverageControllerTest {
       .expectBody(Beverage.class);
   }
 
+  @Test
+  public void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
+    webClient.get().uri("/beverages/ingredients/{keyword}", "pear").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBody(Beverage.class);
+  }
+
 }
 
