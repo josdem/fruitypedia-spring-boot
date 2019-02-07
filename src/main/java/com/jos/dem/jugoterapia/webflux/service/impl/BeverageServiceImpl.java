@@ -37,5 +37,9 @@ public class BeverageServiceImpl implements BeverageService {
     return beverageRepository.findByCategoryId(categoryId);
   }
 
+  public Flux<Beverage> findByIngredientKeyword(String keyword){
+    return beverageRepository.findByBeverageContaining(keyword);
+  }
+
 }
 
