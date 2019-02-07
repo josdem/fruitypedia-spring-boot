@@ -20,5 +20,5 @@ import com.jos.dem.jugoterapia.webflux.model.Beverage;
 
 public interface BeverageRepository extends ReactiveMongoRepository<Beverage, Integer> {
   Flux<Beverage> findByCategoryId(Integer category);
-  Flux<Beverage> findByBeverageContaining(String keyword);
+  Flux<Beverage> findByIngredientsLikeIgnoreCase(String keyword);
 }

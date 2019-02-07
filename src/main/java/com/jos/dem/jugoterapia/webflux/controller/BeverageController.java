@@ -14,6 +14,7 @@
 package com.jos.dem.jugoterapia.webflux.controller;
 
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,8 +50,8 @@ public class BeverageController {
 
   @ApiImplicitParam(name = "keyword", value = "Beverage ingredients contain keyword", required = true, dataType = "string", paramType = "path")
   @GetMapping("/ingredients/{keyword}")
-  public Mono<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
-    log.info("Listing beverages by keyword: {}", keyword);
+  public Flux<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
+    log.info("Listing beverages where ingredients contains: {}", keyword);
     return beverageService.findByIngredientKeyword(keyword);
   }
 

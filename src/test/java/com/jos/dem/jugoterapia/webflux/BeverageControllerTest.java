@@ -52,7 +52,7 @@ public class BeverageControllerTest {
 
   @Test
   public void shouldGetBeverageByIngredientKeyword() throws Exception {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "pear").accept(APPLICATION_JSON)
+    webClient.get().uri("/beverages/ingredients/{keyword}", "Pear").accept(APPLICATION_JSON)
       .exchange()
       .expectStatus().isOk()
       .expectHeader().contentType(APPLICATION_JSON_UTF8)
