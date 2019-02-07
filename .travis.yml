@@ -3,19 +3,8 @@ jdk: openjdk8
 before_script:
   - sleep 15
   - mongo jugoterapia --eval 'db.createUser({user:"jugoterapiaUser",pwd:"jug0t3r4p14DB",roles:["readWrite"]});'
-  - mongoimport --db jugoterapia \
-    --collection category \
-    --authenticationDatabase jugoterapia \
-    --username  jugoterapiaUser \
-    --password jug0t3r4p14DB \
-    --file 'src/main/resources/categories.json'
-  - mongoimport
-    --db jugoterapia \
-    --collection beverage \
-    --authenticationDatabase jugoterapia \
-    --username  jugoterapiaUser \
-    --password jug0t3r4p14DB \
-    --file 'src/main/resources/beverages.json'
+  - mongoimport --db jugoterapia --collection category --authenticationDatabase jugoterapia --username jugoterapiaUser --password jug0t3r4p14DB --file 'src/main/resources/categories.json'
+  - mongoimport --db jugoterapia --collection beverage --authenticationDatabase jugoterapia --username jugoterapiaUser --password jug0t3r4p14DB --file 'src/main/resources/beverages.json'
 services:
   - mongodb
 script:
