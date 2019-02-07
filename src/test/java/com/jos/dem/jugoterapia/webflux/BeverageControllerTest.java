@@ -13,12 +13,10 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.junit.Assume.assumeFalse;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 
 import org.junit.Test;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,11 +33,6 @@ public class BeverageControllerTest {
 
   @Autowired
   private WebTestClient webClient;
-
-  @Before
-  public void before() {
-    assumeFalse(System.getenv("USER").equals("travis"));
-  }
 
   @Test
   public void shouldGetBeverage() throws Exception {
