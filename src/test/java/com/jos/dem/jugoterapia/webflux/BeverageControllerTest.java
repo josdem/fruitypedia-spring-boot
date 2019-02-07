@@ -45,7 +45,16 @@ public class BeverageControllerTest {
   public void shouldGetBeverage() throws Exception {
     webClient.get().uri("/beverages/{id}", 83).accept(APPLICATION_JSON)
       .exchange()
-		  .expectStatus().isOk()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBody(Beverage.class);
+  }
+
+  @Test
+  public void shouldGetBeverageByIngredientKeyword() throws Exception {
+    webClient.get().uri("/beverages/ingredients/{keyword}", "pear").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
       .expectHeader().contentType(APPLICATION_JSON_UTF8)
       .expectBody(Beverage.class);
   }
