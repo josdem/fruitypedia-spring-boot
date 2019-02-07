@@ -30,7 +30,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class BeverageControllerTest {
 
   @Autowired
@@ -44,24 +44,6 @@ public class BeverageControllerTest {
   @Test
   public void shouldGetBeverage() throws Exception {
     webClient.get().uri("/beverages/{id}", 83).accept(APPLICATION_JSON)
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_UTF8)
-      .expectBody(Beverage.class);
-  }
-
-  @Test
-  public void shouldGetBeverageByIngredientKeyword() throws Exception {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "Pear").accept(APPLICATION_JSON)
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_UTF8)
-      .expectBody(Beverage.class);
-  }
-
-  @Test
-  public void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "pear").accept(APPLICATION_JSON)
       .exchange()
       .expectStatus().isOk()
       .expectHeader().contentType(APPLICATION_JSON_UTF8)
