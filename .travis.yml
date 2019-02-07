@@ -1,4 +1,7 @@
 language: java
 jdk: openjdk8
+before_script:
+  - sleep 15
+    - mongo jugoterapia --eval 'db.createUser({user:"jugoterapiaUser",pwd:"jug0t3r4p14DB",roles:["readWrite"]});'
 script:
   - ./gradlew test
