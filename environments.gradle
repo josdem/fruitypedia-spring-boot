@@ -3,5 +3,5 @@ ext {
 }
 
 task settingEnvironment(){
-  ant.replaceregexp(file: "${targetDir}/application.properties", match: "swagger.host=*", replace: "swagger.host=${host}", byline: true)
+  ant.replaceregexp(file: "${targetDir}/application.properties", match: "swagger.host=.+", replace: "swagger.host=${host}", byline: true)
 }
