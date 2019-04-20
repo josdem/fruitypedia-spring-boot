@@ -8,4 +8,4 @@ before_script:
 services:
   - mongodb
 script:
-  - ./gradlew test jacocoTestReport sonarqube
+  - ./gradlew -Dswagger.host="localhost" test jacocoTestReport sonarqube
