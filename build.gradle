@@ -58,3 +58,7 @@ test {
     html.enabled = true
   }
 }
+
+bootRun {
+  systemProperties = System.properties
+}
