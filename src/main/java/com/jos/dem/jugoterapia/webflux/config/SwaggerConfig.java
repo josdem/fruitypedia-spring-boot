@@ -13,6 +13,9 @@
 
 package com.jos.dem.jugoterapia.webflux.config;
 
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,11 +36,11 @@ public class SwaggerConfig {
   @Bean
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
+    .protocols(Stream.of("http","https").collect(Collectors.toSet()))
     .host(host)
     .select()
     .apis(RequestHandlerSelectors.any())
     .paths(PathSelectors.any())
-    .protocols(newHashSet("http", "https"));
     .build();
   }
 
