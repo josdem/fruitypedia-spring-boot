@@ -1,0 +1,16 @@
+#!/usr/bin/env groovy
+
+def request() {
+  println 'Starting health check'
+  try {
+    String response = "curl -H 'Content-Type: text/plain' https://webflux.josdem.io/sanity/ping".execute().text
+    assert response == 'pong'
+    println 'Up and running!'
+  } catch (AssertionError aex){
+    println 'Service is not ready yet'
+  }
+}
+
+task check {
+  request()
+}
