@@ -1,16 +1,24 @@
 #!/usr/bin/env groovy
 
+int counter = 1
+int threshold = 3
+
 def request() {
   println 'Starting health check'
   try {
     String response = "curl -H 'Content-Type: text/plain' https://webflux.josdem.io/sanity/ping".execute().text
     assert response == 'pong'
     println 'Up and running!'
+    return 200
   } catch (AssertionError aex){
     println 'Service is not ready yet'
+    return 400
   }
 }
 
 task check {
-  request()
+  while (request() != 200 && counter < threshold){
+    Thread.sleep(60 * 1000)
+    counter++
+  }
 }
