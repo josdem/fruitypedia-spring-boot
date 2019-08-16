@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 @Api(tags={"knows how to respond to sanity checks"})
 @RestController
 @RequestMapping("/sanity")
-public class SanityController {
+public class HealthController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
