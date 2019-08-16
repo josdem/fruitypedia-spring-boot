@@ -24,11 +24,9 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-import com.jos.dem.jugoterapia.webflux.controller.SanityController;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class SanityControllerTest {
+public class HealthControllerTest {
 
   @Autowired
   private WebTestClient webClient;
