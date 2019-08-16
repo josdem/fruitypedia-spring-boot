@@ -35,7 +35,7 @@ public class HealthControllerTest {
   public void shouldGetPong() throws Exception {
     webClient.get().uri("/health/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()
-		  .expectStatus().isOk()
+      .expectStatus().isOk()
       .expectBody(String.class).isEqualTo("pong");
   }
 
