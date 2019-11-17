@@ -17,14 +17,19 @@ import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class BeverageControllerTest {
+
+  @Value("${bucket.url}")
+  private String bucketUrl;
 
   @Autowired
   private WebTestClient webClient;
@@ -36,7 +41,11 @@ class BeverageControllerTest {
             .exchange()
             .expectStatus().isOk()
             .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBody(Beverage.class);
+            .expectBody(Beverage.class)
+            .value(beverage -> beverage.getName(), equalTo("Nutritive Carrot Smoothie"))
+            .value(beverage -> beverage.getIngredients(), equalTo("4 Carrots,1 Celery Stalk,1 Pear,10 Spinach Leaves"))
+            .value(beverage -> beverage.getImage(), containsString(bucketUrl))
+            .value(beverage -> beverage.getRecipe(), notNullValue());
   }
 
   @Test
