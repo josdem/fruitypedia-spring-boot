@@ -13,12 +13,11 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-
 import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LanguageResolverTest {
 

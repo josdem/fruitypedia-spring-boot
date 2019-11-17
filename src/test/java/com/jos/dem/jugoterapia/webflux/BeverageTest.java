@@ -13,28 +13,18 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-
-import java.util.List;
-import java.util.Arrays;
-
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
-
-import org.mockito.Mock;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-
-import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import com.jos.dem.jugoterapia.webflux.service.impl.BeverageServiceImpl;
-import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import static org.mockito.Mockito.verify;
 
 public class BeverageTest {
 
