@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import org.springframework.http.MediaType;
 import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class HealthController {
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
-  @GetMapping("/{ping}")
+  @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Mono<String> check(@PathVariable("ping") String ping){
     log.info(ping);
     return Mono.just("pong");

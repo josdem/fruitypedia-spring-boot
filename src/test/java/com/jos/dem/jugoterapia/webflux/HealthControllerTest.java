@@ -13,16 +13,15 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.reactive.server.WebTestClient;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -33,10 +32,11 @@ public class HealthControllerTest {
 
   @Test
   public void shouldGetPong() throws Exception {
-    webClient.get().uri("/health/{ping}", "ping").accept(APPLICATION_JSON)
-      .exchange()
-      .expectStatus().isOk()
-      .expectBody(String.class).isEqualTo("pong");
+    webClient.get().uri("/health/{ping}", "ping")
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_UTF8_VALUE)
+            .expectBody(String.class).isEqualTo("pong");
   }
 
 }
