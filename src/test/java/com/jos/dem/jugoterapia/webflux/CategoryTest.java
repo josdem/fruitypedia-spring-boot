@@ -48,9 +48,9 @@ public class CategoryTest {
   @Test
   @DisplayName("Should find all categories")
   void shouldFindAllCategories() throws Exception {
-    when(categoryRepository.findByI18n(language)).thenReturn(Flux.just(category));
+    when(categoryRepository.findByI18nOrderById(language)).thenReturn(Flux.just(category));
     service.findByI18n(language);
-    verify(categoryRepository).findByI18n(language);
+    verify(categoryRepository).findByI18nOrderById(language);
   }
 
 }
