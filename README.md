@@ -13,13 +13,13 @@ https://github.com/josdem/jugoterapia-webflux/wiki
 #### To run tests
 
 ```bash
-gradle test
+gradle test -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
 ```
 
 #### To run the project
 
 ```bash
-gradle bootRun
+gradle bootRun -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
 ```
 
 #### Go here for more information
