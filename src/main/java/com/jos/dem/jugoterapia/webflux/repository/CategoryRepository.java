@@ -19,5 +19,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 
 public interface CategoryRepository extends ReactiveMongoRepository<Category, Integer> {
-  Flux<Category> findByI18n(String language);
+  Flux<Category> findByI18nOrderById(String language);
 }

@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
   private CategoryRepository categoryRepository;
 
   public Flux<Category> findByI18n(String language){
-    return categoryRepository.findByI18n(language);
+    return categoryRepository.findByI18nOrderById(language);
   }
 
 }
