@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Api(tags={"knows how to respond to sanity checks"})
+@Api(tags={"knows how to respond to health checks"})
 @RestController
 @RequestMapping("/health")
 public class HealthController {
