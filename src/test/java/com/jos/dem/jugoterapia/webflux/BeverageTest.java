@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.verify;
 
-public class BeverageTest {
+class BeverageTest {
 
   @InjectMocks
   private BeverageService service = new BeverageServiceImpl();
@@ -40,9 +40,9 @@ public class BeverageTest {
   private Beverage beverage = new Beverage(beverageId, "Jugo nutritivo", "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas", "Lava perfectamente todos los ingrendientes","imageUrl",categoryId);
 
   @BeforeEach
-	void setup() {
+  void setup() {
     MockitoAnnotations.initMocks(this);
-	}
+  }
 
   @Test
   @DisplayName("Should find by id")

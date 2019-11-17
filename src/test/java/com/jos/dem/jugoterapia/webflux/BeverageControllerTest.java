@@ -15,6 +15,7 @@ package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -23,13 +24,14 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class BeverageControllerTest {
+class BeverageControllerTest {
 
   @Autowired
   private WebTestClient webClient;
 
   @Test
-  public void shouldGetBeverage() throws Exception {
+  @DisplayName("Should get beverage")
+  void shouldGetBeverage() {
     webClient.get().uri("/beverages/{id}", 83)
             .exchange()
             .expectStatus().isOk()
@@ -38,7 +40,8 @@ public class BeverageControllerTest {
   }
 
   @Test
-  public void shouldGetBeverageByIngredientKeyword() throws Exception {
+  @DisplayName("Should get beverage by ingredient in capitalize")
+  void shouldGetBeverageByIngredientKeyword() {
     webClient.get().uri("/beverages/ingredients/{keyword}", "Pear")
             .exchange()
             .expectStatus().isOk()
@@ -47,7 +50,8 @@ public class BeverageControllerTest {
   }
 
   @Test
-  public void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
+  @DisplayName("Should get beverage by ingredient in lowercase")
+  void shouldGetBeverageByIngredientKeywordIgnoreCase() {
     webClient.get().uri("/beverages/ingredients/{keyword}", "pear")
             .exchange()
             .expectStatus().isOk()

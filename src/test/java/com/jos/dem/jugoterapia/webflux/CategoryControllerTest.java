@@ -15,6 +15,7 @@ package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.model.Category;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,13 +25,14 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.springframework.http.MediaType.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CategoryControllerTest {
+class CategoryControllerTest {
 
   @Autowired
   private WebTestClient webClient;
 
   @Test
-  public void shouldGetCategories() throws Exception {
+  @DisplayName("Should get all categories")
+  void shouldGetCategories() throws Exception {
     webClient.get().uri("/categories/")
             .exchange()
             .expectStatus().isOk()
@@ -39,7 +41,8 @@ public class CategoryControllerTest {
   }
 
   @Test
-  public void shouldGetCategoriesByLanguage() throws Exception {
+  @DisplayName("Should get categories in spanish")
+  void shouldGetCategoriesByLanguage() throws Exception {
     webClient.get().uri("/categories/{language}", "es")
             .exchange()
             .expectStatus().isOk()
@@ -48,6 +51,7 @@ public class CategoryControllerTest {
   }
 
   @Test
+  @DisplayName("Should get categories by id")
   public void shouldGetBeveragesByCategory() throws Exception {
     webClient.get().uri("/categories/{id}/beverages", 1)
             .exchange()

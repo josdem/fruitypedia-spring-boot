@@ -8,12 +8,11 @@ plugins {
 
 ext {
   springfoxVersion = '2.9.2'
-  mockitoVersion = '2.23.4'
   groovyVersion = '2.5.8'
 }
 
 group = 'com.jos.dem.jugoterapia.webflux'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 11
 
 repositories {

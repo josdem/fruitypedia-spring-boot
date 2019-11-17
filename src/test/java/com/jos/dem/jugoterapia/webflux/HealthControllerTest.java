@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,13 +23,14 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class HealthControllerTest {
+class HealthControllerTest {
 
   @Autowired
   private WebTestClient webClient;
 
   @Test
-  public void shouldGetPong() throws Exception {
+  @DisplayName("Should get pong")
+  void shouldGetPong() throws Exception {
     webClient.get().uri("/health/{ping}", "ping")
             .exchange()
             .expectStatus().isOk()
