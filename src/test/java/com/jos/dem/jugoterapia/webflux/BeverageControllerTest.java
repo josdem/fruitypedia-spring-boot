@@ -14,8 +14,8 @@
 package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,6 +49,19 @@ class BeverageControllerTest {
   }
 
   @Test
+  @DisplayName("Should get beverage by ingredient")
+  void shouldGetBeverageByIngredientKeywordIgnoreCase() {
+    webClient.get().uri("/beverages/ingredients/{keyword}", "pear")
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Beverage.class)
+            .value(beverages ->
+                    beverages.forEach( beverage ->
+                            assertTrue(beverage.getIngredients().toLowerCase().contains("pear"))));
+  }
+
+  @Test
   @DisplayName("Should get beverage by ingredient in capitalize")
   void shouldGetBeverageByIngredientKeyword() {
     webClient.get().uri("/beverages/ingredients/{keyword}", "Pear")
@@ -57,17 +70,6 @@ class BeverageControllerTest {
             .expectHeader().contentType(APPLICATION_JSON_VALUE)
             .expectBodyList(Beverage.class);
   }
-
-  @Test
-  @DisplayName("Should get beverage by ingredient in lowercase")
-  void shouldGetBeverageByIngredientKeywordIgnoreCase() {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "pear")
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Beverage.class);
-  }
-
 
 }
 
