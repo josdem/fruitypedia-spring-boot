@@ -1,17 +1,16 @@
 plugins {
-  id 'org.springframework.boot' version '2.1.7.RELEASE'
+  id 'org.springframework.boot' version '2.2.1.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
   id "org.sonarqube" version "2.7"
+  id 'jacoco'
   id 'java'
 }
 
 ext {
-  junitJupiterVersion = '5.3.2'
   springfoxVersion = '2.9.2'
   mockitoVersion = '2.23.4'
+  groovyVersion = '2.5.8'
 }
-
-apply plugin: "jacoco"
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.jugoterapia.webflux'
 version = '0.0.1-SNAPSHOT'
@@ -25,14 +24,14 @@ dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
   implementation('org.springframework.boot:spring-boot-starter-web')
   implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
-  implementation'org.codehaus.groovy:groovy-all:2.5.5'
+  implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
   implementation "io.springfox:springfox-swagger2:$springfoxVersion"
   implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
-  testRuntime "org.junit.vintage:junit-vintage-engine:$junitJupiterVersion"
-  testCompile "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+  testImplementation 'io.projectreactor:reactor-test'
+  testImplementation 'org.mockito:mockito-junit-jupiter'
 }
 
 jacocoTestReport {
