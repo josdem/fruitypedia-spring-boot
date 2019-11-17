@@ -15,14 +15,13 @@ package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.model.Category;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CategoryControllerTest {
@@ -32,29 +31,29 @@ public class CategoryControllerTest {
 
   @Test
   public void shouldGetCategories() throws Exception {
-    webClient.get().uri("/categories/").accept(APPLICATION_JSON)
-      .exchange()
-		  .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_UTF8)
-      .expectBodyList(Category.class);
+    webClient.get().uri("/categories/")
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Category.class);
   }
 
   @Test
   public void shouldGetCategoriesByLanguage() throws Exception {
-    webClient.get().uri("/categories/{language}", "es").accept(APPLICATION_JSON)
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_UTF8)
-      .expectBodyList(Category.class);
+    webClient.get().uri("/categories/{language}", "es")
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Category.class);
   }
 
   @Test
   public void shouldGetBeveragesByCategory() throws Exception {
-    webClient.get().uri("/categories/{id}/beverages", 1).accept(APPLICATION_JSON)
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_UTF8)
-      .expectBodyList(Beverage.class);
+    webClient.get().uri("/categories/{id}/beverages", 1)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Beverage.class);
   }
 
 }

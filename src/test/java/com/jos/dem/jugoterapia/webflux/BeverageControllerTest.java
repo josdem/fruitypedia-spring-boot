@@ -22,8 +22,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@SpringBootTest(classes = JugoterapiaApplication.class,
-        webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class BeverageControllerTest {
 
   @Autowired
@@ -41,19 +40,19 @@ public class BeverageControllerTest {
   @Test
   public void shouldGetBeverageByIngredientKeyword() throws Exception {
     webClient.get().uri("/beverages/ingredients/{keyword}", "Pear")
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_VALUE)
-      .expectBodyList(Beverage.class);
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Beverage.class);
   }
 
   @Test
   public void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
     webClient.get().uri("/beverages/ingredients/{keyword}", "pear")
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType(APPLICATION_JSON_VALUE)
-      .expectBodyList(Beverage.class);
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(APPLICATION_JSON_VALUE)
+            .expectBodyList(Beverage.class);
   }
 
 
