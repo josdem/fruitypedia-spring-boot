@@ -24,6 +24,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class BeverageControllerTest {

@@ -20,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
-
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class HealthControllerTest {
 
@@ -34,7 +32,6 @@ class HealthControllerTest {
     webClient.get().uri("/health/{ping}", "ping")
             .exchange()
             .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_UTF8_VALUE)
             .expectBody(String.class).isEqualTo("pong");
   }
 
