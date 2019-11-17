@@ -12,17 +12,25 @@ ext {
 }
 
 group = 'com.jos.dem.jugoterapia.webflux'
-version = '1.0.0-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 sourceCompatibility = 11
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  implementation('org.springframework.boot:spring-boot-starter-web')
-  implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
   implementation "io.springfox:springfox-swagger2:$springfoxVersion"
   implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"

@@ -14,11 +14,14 @@
 package com.jos.dem.jugoterapia.webflux.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@Getter
+@AllArgsConstructor
 public class Category {
 
   @Id
@@ -26,19 +29,5 @@ public class Category {
   private String name;
   @JsonIgnore
   private String i18n;
-
-  public Category(Integer id, String i18n, String name){
-    this.id = id;
-    this.i18n = i18n;
-    this.name = name;
-  }
-
-  public Integer getId(){
-    return id;
-  }
-
-  public String getName(){
-    return name;
-  }
 
 }

@@ -14,11 +14,14 @@
 package com.jos.dem.jugoterapia.webflux.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@Getter
+@AllArgsConstructor
 public class Beverage {
 
   @Id
@@ -29,34 +32,5 @@ public class Beverage {
   private String image;
   @JsonIgnore
   private Integer categoryId;
-
-  public Beverage(Integer id, String name, String ingredients, String recipe, String image, Integer categoryId){
-    this.id = id;
-    this.name = name;
-    this.ingredients = ingredients;
-    this.recipe = recipe;
-    this.image = image;
-    this.categoryId = categoryId;
-  }
-
-  public Integer getId(){
-    return id;
-  }
-
-  public String getName(){
-    return name;
-  }
-
-  public String getIngredients(){
-    return ingredients;
-  }
-
-  public String getRecipe(){
-    return recipe;
-  }
-
-  public String getImage(){
-    return image;
-  }
 
 }
