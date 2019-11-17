@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.http.MediaType.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -47,7 +48,12 @@ class CategoryControllerTest {
             .exchange()
             .expectStatus().isOk()
             .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Category.class);
+            .expectBodyList(Category.class)
+            .value(categories -> categories.size(), equalTo(4))
+            .value(categories -> categories.get(0).getName(), equalTo("Curativos"))
+            .value(categories -> categories.get(1).getName(), equalTo("Saludables"))
+            .value(categories -> categories.get(2).getName(), equalTo("Energizantes"))
+            .value(categories -> categories.get(3).getName(), equalTo("Estimulantes"));
   }
 
   @Test
