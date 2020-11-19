@@ -16,6 +16,12 @@ https://github.com/josdem/jugoterapia-webflux/wiki
 gradle test -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
 ```
 
+#### To run tests with Jacoco and Sonarqube
+
+```bash
+gradle test jacocoTestReport sonarqube -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
+```
+
 #### To run the project
 
 ```bash
