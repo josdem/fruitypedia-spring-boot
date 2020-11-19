@@ -39,6 +39,8 @@ dependencies {
   }
   testImplementation 'io.projectreactor:reactor-test'
   testImplementation 'org.mockito:mockito-junit-jupiter'
+  testCompileOnly 'org.projectlombok:lombok'
+  testAnnotationProcessor "org.projectlombok:lombok"
 }
 
 jacocoTestReport {
