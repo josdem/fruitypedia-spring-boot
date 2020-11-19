@@ -13,9 +13,9 @@
 
 package com.jos.dem.jugoterapia.webflux.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Value;
 
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.spi.DocumentationType;
@@ -25,15 +25,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@RequiredArgsConstructor
 public class SwaggerConfig {
 
-  @Value("${swagger.host}")
-  private String host;
+  private final ApplicationConfig applicationConfig;
 
   @Bean
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
-    .host(host)
+    .host(applicationConfig.getSwaggerHost())
     .select()
     .apis(RequestHandlerSelectors.any())
     .paths(PathSelectors.any())
