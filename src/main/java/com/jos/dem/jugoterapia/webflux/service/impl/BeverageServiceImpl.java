@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
@@ -24,10 +25,10 @@ import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 
 @Service
+@RequiredArgsConstructor
 public class BeverageServiceImpl implements BeverageService {
 
-  @Autowired
-  private BeverageRepository beverageRepository;
+  private final BeverageRepository beverageRepository;
 
   public Mono<Beverage> findById(Integer beverageId){
     return beverageRepository.findById(beverageId);

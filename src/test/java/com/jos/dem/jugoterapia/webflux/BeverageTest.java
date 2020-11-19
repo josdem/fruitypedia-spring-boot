@@ -28,11 +28,10 @@ import static org.mockito.Mockito.verify;
 
 class BeverageTest {
 
-  @InjectMocks
-  private BeverageService service = new BeverageServiceImpl();
-
   @Mock
   private BeverageRepository beverageRepository;
+
+  private BeverageService service;
 
   private Integer beverageId = 66;
   private Integer categoryId = 3;
@@ -41,7 +40,8 @@ class BeverageTest {
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
+    service = new BeverageServiceImpl(beverageRepository);
   }
 
   @Test

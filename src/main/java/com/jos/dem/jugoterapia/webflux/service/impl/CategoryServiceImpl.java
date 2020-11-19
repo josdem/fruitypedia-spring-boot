@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
 import org.springframework.stereotype.Service;
@@ -23,10 +24,10 @@ import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-  @Autowired
-  private CategoryRepository categoryRepository;
+  private final CategoryRepository categoryRepository;
 
   public Flux<Category> findByI18n(String language){
     return categoryRepository.findByI18nOrderById(language);

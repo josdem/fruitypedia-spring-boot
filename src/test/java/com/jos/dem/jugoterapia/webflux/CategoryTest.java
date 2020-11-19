@@ -30,11 +30,10 @@ import static org.mockito.Mockito.when;
 
 public class CategoryTest {
 
-  @InjectMocks
-  private CategoryService service = new CategoryServiceImpl();
-
   @Mock
   private CategoryRepository categoryRepository;
+
+  private CategoryService service;
 
   private Integer categoryId = 1;
   private String language = "es";
@@ -42,7 +41,8 @@ public class CategoryTest {
 
   @BeforeEach
   void setup() {
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
+    service = new CategoryServiceImpl(categoryRepository);
   }
 
   @Test

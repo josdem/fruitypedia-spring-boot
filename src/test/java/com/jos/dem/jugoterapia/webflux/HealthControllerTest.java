@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class HealthControllerTest {
 
-  @Autowired
-  private WebTestClient webClient;
+  private final WebTestClient webClient;
 
   @Test
   @DisplayName("Should get pong")

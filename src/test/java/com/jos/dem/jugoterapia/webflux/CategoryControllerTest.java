@@ -15,6 +15,7 @@ package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.model.Category;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.http.MediaType.*;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class CategoryControllerTest {
 
-  @Autowired
-  private WebTestClient webClient;
+  private final WebTestClient webClient;
 
   @Test
   @DisplayName("Should get all categories")

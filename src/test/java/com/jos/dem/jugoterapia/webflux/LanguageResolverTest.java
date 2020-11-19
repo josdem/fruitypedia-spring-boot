@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LanguageResolverTest {
 
-  private LanguageResolver languageResolver = new LanguageResolver();
+  private final LanguageResolver languageResolver = new LanguageResolver();
 
   @Test
   @DisplayName("Should select English if not language")
