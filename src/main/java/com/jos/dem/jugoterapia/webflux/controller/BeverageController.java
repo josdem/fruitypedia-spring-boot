@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,18 +29,14 @@ import io.swagger.annotations.ApiImplicitParam;
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Api(tags = {"knows how receive manage beverage requests"})
+@Slf4j
 @RestController
 @RequestMapping("/beverages")
+@RequiredArgsConstructor
 public class BeverageController {
 
-  @Autowired
-  private BeverageService beverageService;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final BeverageService beverageService;
 
   @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")

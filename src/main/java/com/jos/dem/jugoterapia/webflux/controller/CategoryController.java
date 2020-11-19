@@ -13,13 +13,14 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -30,22 +31,16 @@ import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Api(tags={"knows how receive manage category requests"})
+@Slf4j
 @RestController
 @RequestMapping("/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
-  @Autowired
-  private CategoryService categoryService;
-  @Autowired
-  private BeverageService beverageService;
-  @Autowired
-  private LanguageResolver languageResolver;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final CategoryService categoryService;
+  private final BeverageService beverageService;
+  private final LanguageResolver languageResolver;
 
   @GetMapping("/")
   public Flux<Category> getCategories(){

@@ -13,6 +13,7 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import reactor.core.publisher.Mono;
 
@@ -24,15 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Api(tags={"knows how to respond to health checks"})
+@Slf4j
 @RestController
 @RequestMapping("/health")
 public class HealthController {
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
