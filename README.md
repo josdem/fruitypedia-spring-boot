@@ -10,6 +10,10 @@ Jugoterapia is an Android application mainly focused in improve your healty base
 
 https://github.com/josdem/jugoterapia-webflux/wiki
 
+#### Swagger
+
+https://webflux.josdem.io/swagger-ui.html
+
 #### To run tests
 
 ```bash
