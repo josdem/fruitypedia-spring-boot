@@ -19,52 +19,57 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.isA;
 import static org.springframework.http.MediaType.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 class CategoryControllerTest {
 
-  private final WebTestClient webClient;
+  private final MockMvc mockMvc;
 
   @Test
   @DisplayName("Should get all categories")
   void shouldGetCategories() throws Exception {
-    webClient.get().uri("/categories/")
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Category.class);
+    mockMvc.perform(get("/categories/"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
 
   @Test
   @DisplayName("Should get categories in spanish")
   void shouldGetCategoriesByLanguage() throws Exception {
-    webClient.get().uri("/categories/{language}", "es")
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Category.class)
-            .value(categories -> categories.size(), equalTo(4))
-            .value(categories -> categories.get(0).getName(), equalTo("Curativos"))
-            .value(categories -> categories.get(1).getName(), equalTo("Energizantes"))
-            .value(categories -> categories.get(2).getName(), equalTo("Saludables"))
-            .value(categories -> categories.get(3).getName(), equalTo("Estimulantes"));
+    mockMvc.perform(get("/categories/{language}", "es"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.*", isA(ArrayList.class)))
+            .andExpect(jsonPath("$[0].name", equalTo("Curativos")))
+            .andExpect(jsonPath("$[1].name", equalTo("Energizantes")))
+            .andExpect(jsonPath("$[2].name", equalTo("Saludables")))
+            .andExpect(jsonPath("$[3].name", equalTo("Estimulantes")));
   }
 
   @Test
   @DisplayName("Should get categories by id")
   public void shouldGetBeveragesByCategory() throws Exception {
-    webClient.get().uri("/categories/{id}/beverages", 1)
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Beverage.class);
+    mockMvc.perform(get("/categories/{id}/beverages", 1))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
 
 }

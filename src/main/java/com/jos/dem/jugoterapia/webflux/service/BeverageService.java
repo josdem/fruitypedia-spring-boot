@@ -13,13 +13,13 @@
 
 package com.jos.dem.jugoterapia.webflux.service;
 
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
-
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface BeverageService {
-  Mono<Beverage> findById(Integer beverageId);
-  Flux<Beverage> findByCategoryId(Integer categoryId);
-  Flux<Beverage> findByIngredientKeyword(String keyword);
+  Optional<Beverage> findById(Integer beverageId);
+  List<Beverage> findByCategoryId(Integer categoryId);
+  List<Beverage> findByIngredientKeyword(String keyword);
 }

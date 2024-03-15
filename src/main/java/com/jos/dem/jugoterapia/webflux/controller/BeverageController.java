@@ -15,9 +15,8 @@ package com.jos.dem.jugoterapia.webflux.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +27,9 @@ import io.swagger.annotations.ApiImplicitParam;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Api(tags = {"knows how receive manage beverage requests"})
 @Slf4j
@@ -40,14 +42,15 @@ public class BeverageController {
 
   @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")
-  public Mono<Beverage> getBeverage(@PathVariable("id") Integer beverageId){
+  public Beverage getBeverage(@PathVariable("id") Integer beverageId){
     log.info("Listing beverages by id: {}", beverageId);
-    return beverageService.findById(beverageId);
+    return beverageService.findById(beverageId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   @ApiImplicitParam(name = "keyword", value = "Beverage ingredients contain keyword", required = true, dataType = "string", paramType = "path")
   @GetMapping("/ingredients/{keyword}")
-  public Flux<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
+  public List<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
     log.info("Listing beverages where ingredients contains: {}", keyword);
     return beverageService.findByIngredientKeyword(keyword);
   }

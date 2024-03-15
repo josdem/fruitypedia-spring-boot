@@ -20,7 +20,6 @@ import com.jos.dem.jugoterapia.webflux.service.impl.BeverageServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -46,21 +45,21 @@ class BeverageTest {
 
   @Test
   @DisplayName("Should find by id")
-  void shouldFindById() throws Exception {
+  void shouldFindById() {
     service.findById(beverageId);
     verify(beverageRepository).findById(beverageId);
   }
 
   @Test
   @DisplayName("Should find by category id")
-  void shouldFindByCateogryId() throws Exception {
+  void shouldFindByCateogryId() {
     service.findByCategoryId(categoryId);
     verify(beverageRepository).findByCategoryId(categoryId);
   }
 
   @Test
   @DisplayName("Should find by ingredient keyword")
-  void shouldFindByIngredientKeyword() throws Exception {
+  void shouldFindByIngredientKeyword() {
     service.findByIngredientKeyword(keyword);
     verify(beverageRepository).findByIngredientsLikeIgnoreCase(keyword);
   }

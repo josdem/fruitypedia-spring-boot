@@ -14,61 +14,63 @@
 package com.jos.dem.jugoterapia.webflux;
 
 import com.jos.dem.jugoterapia.webflux.config.ApplicationConfig;
-import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.CoreMatchers.*;
+import java.util.ArrayList;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.Matchers.containsStringIgnoringCase;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.isA;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 class BeverageControllerTest {
 
-  private final WebTestClient webClient;
+  private final MockMvc mockMvc;
   private final ApplicationConfig applicationConfig;
 
   @Test
   @DisplayName("Should get beverage")
-  void shouldGetBeverage() {
-    webClient.get().uri("/beverages/{id}", 83)
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBody(Beverage.class)
-            .value(beverage -> beverage.getName(), equalTo("Nutritive Carrot Smoothie"))
-            .value(beverage -> beverage.getIngredients(), equalTo("4 Carrots,1 Celery Stalk,1 Pear,10 Spinach Leaves"))
-            .value(beverage -> beverage.getImage(), containsString(applicationConfig.getBucketUrl()))
-            .value(beverage -> beverage.getRecipe(), notNullValue());
+  void shouldGetBeverage() throws Exception {
+    mockMvc.perform(get("/beverages/{id}", 83))
+          .andExpect(status().isOk())
+          .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+          .andExpect(jsonPath("$.name").value("Nutritive Carrot Smoothie"))
+          .andExpect(jsonPath("$.ingredients").value("4 Carrots,1 Celery Stalk,1 Pear,10 Spinach Leaves"))
+          .andExpect(jsonPath("$.image").value(containsString(applicationConfig.getBucketUrl())))
+          .andExpect(jsonPath("$.recipe").isNotEmpty());
   }
 
   @Test
   @DisplayName("Should get beverage by ingredient")
-  void shouldGetBeverageByIngredientKeywordIgnoreCase() {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "pear")
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Beverage.class)
-            .value(beverages ->
-                    beverages.forEach( beverage ->
-                            assertTrue(beverage.getIngredients().toLowerCase().contains("pear"))));
+  void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
+    mockMvc.perform(get("/beverages/ingredients/{keyword}", "pear"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$[*].ingredients", everyItem(containsStringIgnoringCase("pear"))));
   }
 
   @Test
   @DisplayName("Should get beverage by ingredient in capitalize")
-  void shouldGetBeverageByIngredientKeyword() {
-    webClient.get().uri("/beverages/ingredients/{keyword}", "Pear")
-            .exchange()
-            .expectStatus().isOk()
-            .expectHeader().contentType(APPLICATION_JSON_VALUE)
-            .expectBodyList(Beverage.class);
+  void shouldGetBeverageByIngredientKeyword() throws Exception {
+    mockMvc.perform(get("/beverages/ingredients/{keyword}", "Pear"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
 
 }

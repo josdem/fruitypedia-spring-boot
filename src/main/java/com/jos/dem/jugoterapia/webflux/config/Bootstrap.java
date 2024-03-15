@@ -34,7 +34,8 @@ public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
     }
 
     private void validateCategories() {
-        categoryRepository.findAll().subscribe(category -> log.info("Category: {}", category.getName()));
+        categoryRepository.findAll()
+                .forEach(category -> log.info("Category: {}", category.getName()));
     }
 
 }
