@@ -12,7 +12,7 @@ ext {
 
 group = 'com.jos.dem.jugoterapia.webflux'
 version = '1.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = 17
 
 configurations {
   compileOnly {
