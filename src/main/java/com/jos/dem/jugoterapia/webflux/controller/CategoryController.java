@@ -15,7 +15,6 @@ package com.jos.dem.jugoterapia.webflux.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Flux;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +30,8 @@ import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
+import java.util.List;
+
 @Api(tags={"knows how receive manage category requests"})
 @Slf4j
 @RestController
@@ -43,21 +44,21 @@ public class CategoryController {
   private final LanguageResolver languageResolver;
 
   @GetMapping("/")
-  public Flux<Category> getCategories(){
+  public List<Category> getCategories(){
     log.info("Listing categories");
     return categoryService.findByI18n("es");
   }
 
   @ApiImplicitParam(name = "language", value = "Language required", required = true, dataType = "string", paramType = "path")
   @GetMapping("/{language}")
-  public Flux<Category> getCategories(@PathVariable("language") String language){
+  public List<Category> getCategories(@PathVariable("language") String language){
     log.info("Listing categories");
     return categoryService.findByI18n(languageResolver.resolve(language));
   }
 
   @ApiImplicitParam(name = "id", value = "Category's id", required = true, dataType = "int", paramType = "path")
   @GetMapping(value="/{id}/beverages")
-  public Flux<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
+  public List<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: {}", categoryId);
     return beverageService.findByCategoryId(categoryId);
   }

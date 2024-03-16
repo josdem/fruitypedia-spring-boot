@@ -15,7 +15,6 @@ package com.jos.dem.jugoterapia.webflux.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +32,9 @@ public class HealthController {
 
   @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Mono<String> check(@PathVariable("ping") String ping){
+  public String check(@PathVariable("ping") String ping){
     log.info(ping);
-    return Mono.just("pong");
+    return "pong";
   }
 
 }

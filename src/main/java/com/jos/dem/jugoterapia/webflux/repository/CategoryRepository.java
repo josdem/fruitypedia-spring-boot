@@ -13,11 +13,12 @@
 
 package com.jos.dem.jugoterapia.webflux.repository;
 
-import reactor.core.publisher.Flux;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import com.jos.dem.jugoterapia.webflux.model.Category;
 
-public interface CategoryRepository extends ReactiveMongoRepository<Category, Integer> {
-  Flux<Category> findByI18nOrderById(String language);
+import java.util.List;
+
+public interface CategoryRepository extends MongoRepository<Category, Integer> {
+  List<Category> findByI18nOrderById(String language);
 }

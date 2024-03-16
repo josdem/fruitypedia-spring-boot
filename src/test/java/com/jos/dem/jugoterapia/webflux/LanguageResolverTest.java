@@ -25,28 +25,28 @@ class LanguageResolverTest {
 
   @Test
   @DisplayName("Should select English if not language")
-  void shouldSelectEnglishIfNoLanguage() throws Exception {
+  void shouldSelectEnglishIfNoLanguage() {
     String language = languageResolver.resolve(null);
     assertEquals("en", language);
   }
 
   @Test
   @DisplayName("Should select English if empty language")
-  void shouldSelectEnglishIfEmptyLanguage() throws Exception {
+  void shouldSelectEnglishIfEmptyLanguage() {
     String language = languageResolver.resolve("");
     assertEquals("en", language);
   }
 
   @Test
   @DisplayName("Should select English if other language")
-  void shouldSelectEnglishIfOtherLanguage() throws Exception {
+  void shouldSelectEnglishIfOtherLanguage() {
     String language = languageResolver.resolve("ru");
     assertEquals("en", language);
   }
 
   @Test
   @DisplayName("Should select Spanish language")
-  void shouldSelectSpanishLanguage() throws Exception {
+  void shouldSelectSpanishLanguage() {
     String language = languageResolver.resolve("es");
     assertEquals("es", language);
   }

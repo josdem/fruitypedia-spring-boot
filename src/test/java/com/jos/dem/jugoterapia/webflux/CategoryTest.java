@@ -20,10 +20,10 @@ import com.jos.dem.jugoterapia.webflux.service.impl.CategoryServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -47,8 +47,8 @@ public class CategoryTest {
 
   @Test
   @DisplayName("Should find all categories")
-  void shouldFindAllCategories() throws Exception {
-    when(categoryRepository.findByI18nOrderById(language)).thenReturn(Flux.just(category));
+  void shouldFindAllCategories() {
+    when(categoryRepository.findByI18nOrderById(language)).thenReturn(List.of(category));
     service.findByI18n(language);
     verify(categoryRepository).findByI18nOrderById(language);
   }

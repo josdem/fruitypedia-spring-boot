@@ -14,8 +14,6 @@
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
 
 import org.springframework.stereotype.Service;
 
@@ -23,21 +21,24 @@ import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class BeverageServiceImpl implements BeverageService {
 
   private final BeverageRepository beverageRepository;
 
-  public Mono<Beverage> findById(Integer beverageId){
+  public Optional<Beverage> findById(Integer beverageId){
     return beverageRepository.findById(beverageId);
   }
 
-  public Flux<Beverage> findByCategoryId(Integer categoryId){
+  public List<Beverage> findByCategoryId(Integer categoryId){
     return beverageRepository.findByCategoryId(categoryId);
   }
 
-  public Flux<Beverage> findByIngredientKeyword(String keyword){
+  public List<Beverage> findByIngredientKeyword(String keyword){
     return beverageRepository.findByIngredientsLikeIgnoreCase(keyword);
   }
 
