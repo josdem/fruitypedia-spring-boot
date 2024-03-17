@@ -17,20 +17,22 @@ https://webflux.josdem.io/swagger-ui.html
 #### To run tests
 
 ```bash
-gradle test -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
+gradle test
 ```
 
 #### To run tests with Jacoco and Sonarqube
 
 ```bash
-gradle test jacocoTestReport sonarqube -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
+gradle test jacocoTestReport sonarqube
 ```
 
 #### To run the project
 
 ```bash
-gradle bootRun -Dspring.data.mongodb.username=username -Dspring.data.mongodb.password=password
+gradle bootRun
 ```
+
+Note: Make sure you set your database credentials in the `src/main/resources/application.yml`
 
 #### Go here for more information
 
