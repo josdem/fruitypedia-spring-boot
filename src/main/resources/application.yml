@@ -6,3 +6,5 @@ spring:
     data:
         mongodb:
             database: jugoterapia
+            username: jugoterapiaUser
+            password: jugoterapiaPassword
