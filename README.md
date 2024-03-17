@@ -1,7 +1,7 @@
 Jugoterapia
 ----------------------------------------------
 
-[![Build Status](https://travis-ci.com/josdem/jugoterapia-webflux.svg?branch=master)](https://travis-ci.com/josdem/jugoterapia-webflux)
+[![GitHub](https://github.com/josdem/jugoterapia-webflux/actions/workflows/main.yml/badge.svg)](https://github.com/josdem/jugoterapia-webflux/actions)
 [![Quality Gate Status](https://sonar.josdem.io/api/project_badges/measure?project=com.jos.dem.jugoterapia.webflux%3Ajugoterapia-webflux&metric=alert_status)](https://sonar.josdem.io/dashboard?id=com.jos.dem.jugoterapia.webflux%3Ajugoterapia-webflux)
 
 Jugoterapia is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service using [Spring Framework](https://docs.spring.io/spring-framework/reference/web.html).
