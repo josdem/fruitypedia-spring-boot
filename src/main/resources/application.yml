@@ -5,4 +5,7 @@ api:
 spring:
     data:
         mongodb:
+            #Change the database name and or credentials to match your local setup
             database: jugoterapia
+            username: jugoterapiaUser
+            password: jugoterapiaPassword
