@@ -30,6 +30,7 @@ jobs:
                     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
                     sudo apt-get update
                     sudo apt-get install -y mongodb-mongosh
+                    sudo apt-get install -y mongo-tools
                     mongosh --version
                     mongoimport --db jugoterapia --collection category --file '${{ github.workspace }}/src/main/resources/categories.json'
       - name: Set up JDK 17
