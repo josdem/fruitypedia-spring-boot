@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +31,7 @@ import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 
 import java.util.List;
 
+@Tag(name = "knows how receive manage category requests")
 @Slf4j
 @RestController
 @RequestMapping("/categories")
@@ -45,12 +48,14 @@ public class CategoryController {
     return categoryService.findByI18n("es");
   }
 
+  @Parameter(name = "language", description = "Language required", required = true)
   @GetMapping("/{language}")
   public List<Category> getCategories(@PathVariable("language") String language){
     log.info("Listing categories");
     return categoryService.findByI18n(languageResolver.resolve(language));
   }
 
+  @Parameter(name = "id", description = "Category's id", required = true)
   @GetMapping(value="/{id}/beverages")
   public List<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
     log.info("Listing beverages by category: {}", categoryId);

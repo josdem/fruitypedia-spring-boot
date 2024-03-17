@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 
@@ -21,11 +23,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Tag(name = "knows how to respond to health checks")
 @Slf4j
 @RestController
 @RequestMapping("/health")
 public class HealthController {
 
+  @Parameter(name = "ping", description = "Ping message", required = true)
   @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
   public String check(@PathVariable("ping") String ping){
     log.info(ping);
