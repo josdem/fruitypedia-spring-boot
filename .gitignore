@@ -3,3 +3,4 @@
 /build/
 **swp
 **swo
+src/main/resources/application-prod.yml
