@@ -1,5 +1,4 @@
 api:
-    swagger-host: localhost:8080
     bucket-url: https://storage.googleapis.com/jugoterapia/
     host: localhost
 spring:

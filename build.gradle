@@ -1,13 +1,9 @@
 plugins {
-  id 'org.springframework.boot' version '2.5.0'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id "org.sonarqube" version "3.0"
+  id 'org.springframework.boot' version '3.2.3'
+  id 'io.spring.dependency-management' version '1.1.4'
+  id "org.sonarqube" version '3.0'
   id 'jacoco'
   id 'java'
-}
-
-ext {
-  springfoxVersion = '2.9.2'
 }
 
 group = 'com.jos.dem.jugoterapia.webflux'
@@ -29,8 +25,6 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
-  implementation "io.springfox:springfox-swagger2:$springfoxVersion"
-  implementation "io.springfox:springfox-swagger-ui:$springfoxVersion"
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
@@ -41,9 +35,9 @@ dependencies {
 
 jacocoTestReport {
   reports {
-    xml.enabled = true
-    html.enabled = true
-    html.destination file("${buildDir}/jacocoHtml")
+    xml.required = true
+    html.required = true
+    html.outputLocation = layout.buildDirectory.dir("${buildDir}/jacocoHtml")
   }
 }
 
@@ -51,7 +45,7 @@ test {
   useJUnitPlatform()
 
   reports {
-    html.enabled = true
+    html.required = true
   }
 }
 

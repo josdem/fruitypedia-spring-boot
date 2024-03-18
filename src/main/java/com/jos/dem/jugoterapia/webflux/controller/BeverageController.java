@@ -22,16 +22,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Api(tags = {"knows how receive manage beverage requests"})
 @Slf4j
 @RestController
 @RequestMapping("/beverages")
@@ -40,7 +36,6 @@ public class BeverageController {
 
   private final BeverageService beverageService;
 
-  @ApiImplicitParam(name = "id", value = "Beverage's id", required = true, dataType = "int", paramType = "path")
   @GetMapping("/{id}")
   public Beverage getBeverage(@PathVariable("id") Integer beverageId){
     log.info("Listing beverages by id: {}", beverageId);
@@ -48,7 +43,6 @@ public class BeverageController {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
-  @ApiImplicitParam(name = "keyword", value = "Beverage ingredients contain keyword", required = true, dataType = "string", paramType = "path")
   @GetMapping("/ingredients/{keyword}")
   public List<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
     log.info("Listing beverages where ingredients contains: {}", keyword);

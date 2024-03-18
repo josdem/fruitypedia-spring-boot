@@ -21,16 +21,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-
-@Api(tags={"knows how to respond to health checks"})
 @Slf4j
 @RestController
 @RequestMapping("/health")
 public class HealthController {
 
-  @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
   public String check(@PathVariable("ping") String ping){
     log.info(ping);

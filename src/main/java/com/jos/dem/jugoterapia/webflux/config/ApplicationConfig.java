@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 public class ApplicationConfig {
 
     private String host;
-    private String swaggerHost;
     private String bucketUrl;
 
 }
