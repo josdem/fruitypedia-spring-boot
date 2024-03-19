@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +30,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@Tag(name = "knows how receive manage beverage requests")
 @Slf4j
 @RestController
 @RequestMapping("/beverages")
@@ -36,6 +39,7 @@ public class BeverageController {
 
   private final BeverageService beverageService;
 
+  @Parameter(name = "id", description = "Beverage's id", required = true)
   @GetMapping("/{id}")
   public Beverage getBeverage(@PathVariable("id") Integer beverageId){
     log.info("Listing beverages by id: {}", beverageId);
@@ -43,6 +47,7 @@ public class BeverageController {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
+  @Parameter(name = "keyword", description = "Beverage ingredients contain keyword", required = true)
   @GetMapping("/ingredients/{keyword}")
   public List<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
     log.info("Listing beverages where ingredients contains: {}", keyword);
