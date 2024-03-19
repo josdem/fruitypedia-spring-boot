@@ -9,4 +9,4 @@ spring:
             #Change the database name and or credentials to match your local setup
             database: jugoterapia
             username: jugoterapiaUser
-            password: jug0t3r4p14DB
+            password: jugoterapiaPassword
