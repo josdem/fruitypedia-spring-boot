@@ -12,7 +12,7 @@ Fruitypedia is an Android application helping to improve your health based in sm
 
 #### Swagger
 
-https://webflux.josdem.io/swagger-ui.html
+https://fruitypedia.josdem.io/swagger-ui/index.html
 
 #### To run tests
 
