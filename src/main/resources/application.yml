@@ -1,6 +1,8 @@
 api:
     bucket-url: https://storage.googleapis.com/jugoterapia/
     host: localhost
+swagger:
+    server: "http://localhost:8080"
 spring:
     data:
         mongodb:
