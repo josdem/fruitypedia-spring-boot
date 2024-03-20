@@ -18,7 +18,6 @@ import com.josdem.fruitypedia.repository.BeverageRepository;
 import com.josdem.fruitypedia.service.BeverageService;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

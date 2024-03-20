@@ -14,7 +14,6 @@
 package com.josdem.fruitypedia.service;
 
 import com.josdem.fruitypedia.model.Beverage;
-
 import java.util.List;
 import java.util.Optional;
 

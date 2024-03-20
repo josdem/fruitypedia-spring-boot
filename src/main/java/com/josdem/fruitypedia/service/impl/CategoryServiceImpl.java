@@ -17,7 +17,6 @@ import com.josdem.fruitypedia.model.Category;
 import com.josdem.fruitypedia.repository.CategoryRepository;
 import com.josdem.fruitypedia.service.CategoryService;
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

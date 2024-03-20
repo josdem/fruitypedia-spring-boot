@@ -15,7 +15,6 @@ package com.josdem.fruitypedia.repository;
 
 import com.josdem.fruitypedia.model.Beverage;
 import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface BeverageRepository extends MongoRepository<Beverage, Integer> {
