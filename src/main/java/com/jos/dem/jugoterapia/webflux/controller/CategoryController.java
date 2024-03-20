@@ -13,23 +13,20 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.model.Category;
+import com.jos.dem.jugoterapia.webflux.service.BeverageService;
+import com.jos.dem.jugoterapia.webflux.service.CategoryService;
+import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.util.LanguageResolver;
-import com.jos.dem.jugoterapia.webflux.service.CategoryService;
-import com.jos.dem.jugoterapia.webflux.service.BeverageService;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "knows how receive manage category requests")
 @Slf4j
@@ -43,23 +40,22 @@ public class CategoryController {
   private final LanguageResolver languageResolver;
 
   @GetMapping("/")
-  public List<Category> getCategories(){
+  public List<Category> getCategories() {
     log.info("Listing categories");
     return categoryService.findByI18n("es");
   }
 
   @Parameter(name = "language", description = "Language required", required = true)
   @GetMapping("/{language}")
-  public List<Category> getCategories(@PathVariable("language") String language){
+  public List<Category> getCategories(@PathVariable("language") String language) {
     log.info("Listing categories");
     return categoryService.findByI18n(languageResolver.resolve(language));
   }
 
   @Parameter(name = "id", description = "Category's id", required = true)
-  @GetMapping(value="/{id}/beverages")
-  public List<Beverage> getBeverages(@PathVariable("id") Integer categoryId){
+  @GetMapping(value = "/{id}/beverages")
+  public List<Beverage> getBeverages(@PathVariable("id") Integer categoryId) {
     log.info("Listing beverages by category: {}", categoryId);
     return beverageService.findByCategoryId(categoryId);
   }
-
 }

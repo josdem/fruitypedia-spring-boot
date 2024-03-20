@@ -13,15 +13,12 @@
 
 package com.jos.dem.jugoterapia.webflux.service.impl;
 
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.stereotype.Service;
-
 import com.jos.dem.jugoterapia.webflux.model.Category;
-import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
-
+import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -29,9 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
 
   private final CategoryRepository categoryRepository;
 
-  public List<Category> findByI18n(String language){
+  public List<Category> findByI18n(String language) {
     return categoryRepository.findByI18nOrderById(language);
   }
-
 }
-

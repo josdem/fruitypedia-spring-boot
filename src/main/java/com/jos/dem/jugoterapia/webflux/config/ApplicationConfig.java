@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("api")
 public class ApplicationConfig {
 
-    private String host;
-    private String bucketUrl;
-
+  private String host;
+  private String bucketUrl;
 }

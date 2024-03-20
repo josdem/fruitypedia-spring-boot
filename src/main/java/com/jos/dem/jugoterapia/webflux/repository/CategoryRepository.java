@@ -13,11 +13,9 @@
 
 package com.jos.dem.jugoterapia.webflux.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import com.jos.dem.jugoterapia.webflux.model.Category;
-
 import java.util.List;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface CategoryRepository extends MongoRepository<Category, Integer> {
   List<Category> findByI18nOrderById(String language);

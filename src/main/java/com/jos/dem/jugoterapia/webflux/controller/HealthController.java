@@ -17,11 +17,10 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "knows how to respond to health checks")
 @Slf4j
@@ -31,9 +30,8 @@ public class HealthController {
 
   @Parameter(name = "ping", description = "Ping message", required = true)
   @GetMapping(value = "/{ping}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public String check(@PathVariable("ping") String ping){
+  public String check(@PathVariable("ping") String ping) {
     log.info(ping);
     return "pong";
   }
-
 }

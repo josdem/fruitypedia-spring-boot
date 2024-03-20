@@ -24,10 +24,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class Category {
 
-  @Id
-  private Integer id;
+  @Id private Integer id;
   private String name;
-  @JsonIgnore
-  private String i18n;
-
+  @JsonIgnore private String i18n;
 }

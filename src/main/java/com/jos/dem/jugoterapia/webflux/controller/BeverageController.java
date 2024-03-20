@@ -13,22 +13,19 @@
 
 package com.jos.dem.jugoterapia.webflux.controller;
 
+import com.jos.dem.jugoterapia.webflux.model.Beverage;
+import com.jos.dem.jugoterapia.webflux.service.BeverageService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.service.BeverageService;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Tag(name = "knows how receive manage beverage requests")
 @Slf4j
@@ -41,17 +38,20 @@ public class BeverageController {
 
   @Parameter(name = "id", description = "Beverage's id", required = true)
   @GetMapping("/{id}")
-  public Beverage getBeverage(@PathVariable("id") Integer beverageId){
+  public Beverage getBeverage(@PathVariable("id") Integer beverageId) {
     log.info("Listing beverages by id: {}", beverageId);
-    return beverageService.findById(beverageId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    return beverageService
+        .findById(beverageId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
-  @Parameter(name = "keyword", description = "Beverage ingredients contain keyword", required = true)
+  @Parameter(
+      name = "keyword",
+      description = "Beverage ingredients contain keyword",
+      required = true)
   @GetMapping("/ingredients/{keyword}")
-  public List<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword){
+  public List<Beverage> getBeverageByKeyword(@PathVariable("keyword") String keyword) {
     log.info("Listing beverages where ingredients contains: {}", keyword);
     return beverageService.findByIngredientKeyword(keyword);
   }
-
 }

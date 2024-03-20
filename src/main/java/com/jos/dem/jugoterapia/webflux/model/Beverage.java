@@ -24,13 +24,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class Beverage {
 
-  @Id
-  private Integer id;
+  @Id private Integer id;
   private String name;
   private String ingredients;
   private String recipe;
   private String image;
-  @JsonIgnore
-  private Integer categoryId;
-
+  @JsonIgnore private Integer categoryId;
 }

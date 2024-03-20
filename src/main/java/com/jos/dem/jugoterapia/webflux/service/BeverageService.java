@@ -14,12 +14,13 @@
 package com.jos.dem.jugoterapia.webflux.service;
 
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-
 import java.util.List;
 import java.util.Optional;
 
 public interface BeverageService {
   Optional<Beverage> findById(Integer beverageId);
+
   List<Beverage> findByCategoryId(Integer categoryId);
+
   List<Beverage> findByIngredientKeyword(String keyword);
 }

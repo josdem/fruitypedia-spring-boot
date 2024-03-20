@@ -14,7 +14,6 @@
 package com.jos.dem.jugoterapia.webflux.service;
 
 import com.jos.dem.jugoterapia.webflux.model.Category;
-
 import java.util.List;
 
 public interface CategoryService {

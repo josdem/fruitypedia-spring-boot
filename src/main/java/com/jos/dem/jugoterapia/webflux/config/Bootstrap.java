@@ -25,18 +25,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
 
-    private final CategoryRepository categoryRepository;
+  private final CategoryRepository categoryRepository;
 
-    @Override
-    public void onApplicationEvent(final ApplicationReadyEvent event) {
-        log.info("Trying to load categories...");
-        validateCategories();
-    }
+  @Override
+  public void onApplicationEvent(final ApplicationReadyEvent event) {
+    log.info("Trying to load categories...");
+    validateCategories();
+  }
 
-    private void validateCategories() {
-        categoryRepository.findAll()
-                .forEach(category -> log.info("Category: {}", category.getName()));
-    }
-
+  private void validateCategories() {
+    categoryRepository.findAll().forEach(category -> log.info("Category: {}", category.getName()));
+  }
 }
-

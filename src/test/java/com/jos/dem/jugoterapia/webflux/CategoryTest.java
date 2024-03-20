@@ -13,25 +13,23 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.jos.dem.jugoterapia.webflux.model.Category;
 import com.jos.dem.jugoterapia.webflux.repository.CategoryRepository;
 import com.jos.dem.jugoterapia.webflux.service.CategoryService;
 import com.jos.dem.jugoterapia.webflux.service.impl.CategoryServiceImpl;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 public class CategoryTest {
 
-  @Mock
-  private CategoryRepository categoryRepository;
+  @Mock private CategoryRepository categoryRepository;
 
   private CategoryService service;
 
@@ -52,6 +50,4 @@ public class CategoryTest {
     service.findByI18n(language);
     verify(categoryRepository).findByI18nOrderById(language);
   }
-
 }
-

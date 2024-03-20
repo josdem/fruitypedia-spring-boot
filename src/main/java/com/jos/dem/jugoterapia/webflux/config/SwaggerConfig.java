@@ -16,14 +16,11 @@ package com.jos.dem.jugoterapia.webflux.config;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
-import lombok.RequiredArgsConstructor;
+import java.util.Arrays;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 @Configuration
 public class SwaggerConfig {
@@ -37,18 +34,16 @@ public class SwaggerConfig {
   @Bean
   public OpenAPI springShopOpenAPI() {
     return new OpenAPI()
-            .servers(Arrays.asList(new Server().url(swaggerServer)))
-            .info(new Info().title("Fruitypedia API Docs")
-                    .description("Fruitypedia REST API documentation")
-                    .version("v1.0.0"));
+        .servers(Arrays.asList(new Server().url(swaggerServer)))
+        .info(
+            new Info()
+                .title("Fruitypedia API Docs")
+                .description("Fruitypedia REST API documentation")
+                .version("v1.0.0"));
   }
 
   @Bean
   public GroupedOpenApi publicApi() {
-    return GroupedOpenApi.builder()
-            .group("fruitypedia")
-            .pathsToMatch("/**")
-            .build();
+    return GroupedOpenApi.builder().group("fruitypedia").pathsToMatch("/**").build();
   }
-
 }

@@ -13,18 +13,6 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import com.jos.dem.jugoterapia.webflux.config.ApplicationConfig;
-import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.ArrayList;
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.hamcrest.Matchers.everyItem;
@@ -34,6 +22,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.jos.dem.jugoterapia.webflux.config.ApplicationConfig;
+import java.util.ArrayList;
+import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -46,32 +45,34 @@ class BeverageControllerTest {
   @Test
   @DisplayName("Should get beverage")
   void shouldGetBeverage() throws Exception {
-    mockMvc.perform(get("/beverages/{id}", 83))
-          .andExpect(status().isOk())
-          .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-          .andExpect(jsonPath("$.name").value("Nutritive Carrot Smoothie"))
-          .andExpect(jsonPath("$.ingredients").value("4 Carrots,1 Celery Stalk,1 Pear,10 Spinach Leaves"))
-          .andExpect(jsonPath("$.image").value(containsString(applicationConfig.getBucketUrl())))
-          .andExpect(jsonPath("$.recipe").isNotEmpty());
+    mockMvc
+        .perform(get("/beverages/{id}", 83))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$.name").value("Nutritive Carrot Smoothie"))
+        .andExpect(
+            jsonPath("$.ingredients").value("4 Carrots,1 Celery Stalk,1 Pear,10 Spinach Leaves"))
+        .andExpect(jsonPath("$.image").value(containsString(applicationConfig.getBucketUrl())))
+        .andExpect(jsonPath("$.recipe").isNotEmpty());
   }
 
   @Test
   @DisplayName("Should get beverage by ingredient")
   void shouldGetBeverageByIngredientKeywordIgnoreCase() throws Exception {
-    mockMvc.perform(get("/beverages/ingredients/{keyword}", "pear"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$[*].ingredients", everyItem(containsStringIgnoringCase("pear"))));
+    mockMvc
+        .perform(get("/beverages/ingredients/{keyword}", "pear"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$[*].ingredients", everyItem(containsStringIgnoringCase("pear"))));
   }
 
   @Test
   @DisplayName("Should get beverage by ingredient in capitalize")
   void shouldGetBeverageByIngredientKeyword() throws Exception {
-    mockMvc.perform(get("/beverages/ingredients/{keyword}", "Pear"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
+    mockMvc
+        .perform(get("/beverages/ingredients/{keyword}", "Pear"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
-
 }
-

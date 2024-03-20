@@ -13,6 +13,10 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.jos.dem.jugoterapia.webflux.controller.HealthController;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
@@ -20,10 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(HealthController.class)
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -34,9 +34,9 @@ class HealthControllerTest {
   @Test
   @DisplayName("Should get pong")
   void shouldGetPong() throws Exception {
-    mockMvc.perform(get("/health/{ping}", "ping"))
-            .andExpect(status().isOk())
-            .andExpect(content().string("pong"));
+    mockMvc
+        .perform(get("/health/{ping}", "ping"))
+        .andExpect(status().isOk())
+        .andExpect(content().string("pong"));
   }
-
 }

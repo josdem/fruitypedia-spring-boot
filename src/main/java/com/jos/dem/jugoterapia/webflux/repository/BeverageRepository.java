@@ -13,13 +13,12 @@
 
 package com.jos.dem.jugoterapia.webflux.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
-
 import java.util.List;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface BeverageRepository extends MongoRepository<Beverage, Integer> {
   List<Beverage> findByCategoryId(Integer category);
+
   List<Beverage> findByIngredientsLikeIgnoreCase(String keyword);
 }

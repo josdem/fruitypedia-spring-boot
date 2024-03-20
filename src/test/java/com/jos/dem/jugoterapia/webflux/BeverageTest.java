@@ -13,6 +13,8 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
+import static org.mockito.Mockito.verify;
+
 import com.jos.dem.jugoterapia.webflux.model.Beverage;
 import com.jos.dem.jugoterapia.webflux.repository.BeverageRepository;
 import com.jos.dem.jugoterapia.webflux.service.BeverageService;
@@ -23,19 +25,23 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Mockito.verify;
-
 class BeverageTest {
 
-  @Mock
-  private BeverageRepository beverageRepository;
+  @Mock private BeverageRepository beverageRepository;
 
   private BeverageService service;
 
   private Integer beverageId = 66;
   private Integer categoryId = 3;
   private String keyword = "pear";
-  private Beverage beverage = new Beverage(beverageId, "Jugo nutritivo", "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas", "Lava perfectamente todos los ingrendientes","imageUrl",categoryId);
+  private Beverage beverage =
+      new Beverage(
+          beverageId,
+          "Jugo nutritivo",
+          "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas",
+          "Lava perfectamente todos los ingrendientes",
+          "imageUrl",
+          categoryId);
 
   @BeforeEach
   void setup() {
@@ -63,6 +69,4 @@ class BeverageTest {
     service.findByIngredientKeyword(keyword);
     verify(beverageRepository).findByIngredientsLikeIgnoreCase(keyword);
   }
-
 }
-

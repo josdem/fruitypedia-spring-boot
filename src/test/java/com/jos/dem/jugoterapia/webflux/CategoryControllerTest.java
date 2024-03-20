@@ -13,8 +13,15 @@
 
 package com.jos.dem.jugoterapia.webflux;
 
-import com.jos.dem.jugoterapia.webflux.model.Beverage;
-import com.jos.dem.jugoterapia.webflux.model.Category;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.isA;
+import static org.springframework.http.MediaType.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,16 +30,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.ArrayList;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.isA;
-import static org.springframework.http.MediaType.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -44,33 +41,34 @@ class CategoryControllerTest {
   @Test
   @DisplayName("Should get all categories")
   void shouldGetCategories() throws Exception {
-    mockMvc.perform(get("/categories/"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
+    mockMvc
+        .perform(get("/categories/"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
 
   @Test
   @DisplayName("Should get categories in spanish")
   void shouldGetCategoriesByLanguage() throws Exception {
-    mockMvc.perform(get("/categories/{language}", "es"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.*", isA(ArrayList.class)))
-            .andExpect(jsonPath("$[0].name", equalTo("Curativos")))
-            .andExpect(jsonPath("$[1].name", equalTo("Energizantes")))
-            .andExpect(jsonPath("$[2].name", equalTo("Saludables")))
-            .andExpect(jsonPath("$[3].name", equalTo("Estimulantes")));
+    mockMvc
+        .perform(get("/categories/{language}", "es"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$.*", isA(ArrayList.class)))
+        .andExpect(jsonPath("$[0].name", equalTo("Curativos")))
+        .andExpect(jsonPath("$[1].name", equalTo("Energizantes")))
+        .andExpect(jsonPath("$[2].name", equalTo("Saludables")))
+        .andExpect(jsonPath("$[3].name", equalTo("Estimulantes")));
   }
 
   @Test
   @DisplayName("Should get categories by id")
   public void shouldGetBeveragesByCategory() throws Exception {
-    mockMvc.perform(get("/categories/{id}/beverages", 1))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.*", isA(ArrayList.class)));
+    mockMvc
+        .perform(get("/categories/{id}/beverages", 1))
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON_VALUE))
+        .andExpect(jsonPath("$.*", isA(ArrayList.class)));
   }
-
 }
-

@@ -18,10 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LanguageResolver {
 
-  public String resolve(String language){
+  public String resolve(String language) {
     return (language == null || !language.equals("es")) ? "en" : "es";
   }
-
 }
-
-
