@@ -11,8 +11,8 @@ ext {
   springdocVersion = '2.4.0'
 }
 
-group = 'com.jos.dem.jugoterapia.webflux'
-version = '1.1.1'
+group = 'com.josdem.fruitypedia'
+version = '1.1.2'
 sourceCompatibility = 17
 
 configurations {
