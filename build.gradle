@@ -12,7 +12,7 @@ ext {
 }
 
 group = 'com.josdem.fruitypedia'
-version = '1.1.2'
+version = '1.2.0'
 sourceCompatibility = 17
 
 configurations {
@@ -66,6 +66,10 @@ test {
   reports {
     html.required = true
   }
+}
+
+springBoot {
+  buildInfo()
 }
 
 bootRun {
