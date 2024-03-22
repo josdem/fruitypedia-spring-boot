@@ -10,3 +10,8 @@ spring:
             database: jugoterapia
             username: jugoterapiaUser
             password: jugoterapiaPassword
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "health,info"
