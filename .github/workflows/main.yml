@@ -40,7 +40,7 @@ jobs:
           EOF
           mongoimport --db jugoterapia --username jugoterapiaUser --password jugoterapiaPassword --collection category --file '${{ github.workspace }}/src/main/resources/categories.json'
           mongoimport --db jugoterapia --username jugoterapiaUser --password jugoterapiaPassword --collection beverage --file '${{ github.workspace }}/src/main/resources/beverages.json'
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           java-version: '21'
