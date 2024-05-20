@@ -41,6 +41,10 @@ gradle bootRun
 
 https://josdem.io/fruitypedia/fruitypedia/
 
+#### Wiki page
+
+https://github.com/josdem/fruitypedia-spring-boot/wiki
+
 
 ## Contributors ✨
 
