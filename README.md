@@ -1,6 +1,6 @@
 fruitypedia-spring-boot
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ----------------------------------------------
 
@@ -58,6 +58,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://josdem.io"><img src="https://avatars.githubusercontent.com/u/1222062?v=4?s=100" width="100px;" alt="Jose Morales"/><br /><sub><b>Jose Morales</b></sub></a><br /><a href="https://github.com/josdem/fruitypedia-spring-boot/commits?author=josdem" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kirillsinyuk"><img src="https://avatars.githubusercontent.com/u/51965753?v=4?s=100" width="100px;" alt="Kirill"/><br /><sub><b>Kirill</b></sub></a><br /><a href="https://github.com/josdem/fruitypedia-spring-boot/pulls?q=is%3Apr+reviewed-by%3Akirillsinyuk" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mslowiak"><img src="https://avatars.githubusercontent.com/u/18486535?v=4?s=100" width="100px;" alt="Marcin Słowiak"/><br /><sub><b>Marcin Słowiak</b></sub></a><br /><a href="https://github.com/josdem/fruitypedia-spring-boot/commits?author=mslowiak" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
