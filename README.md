@@ -2,6 +2,7 @@ fruitypedia-spring-boot
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 [![GitHub](https://github.com/josdem/jugoterapia-webflux/actions/workflows/main.yml/badge.svg)](https://github.com/josdem/jugoterapia-webflux/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=josdem_fruitypedia-spring-boot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=josdem_fruitypedia-spring-boot)
 ----------------------------------------------
 Fruitypedia is an Android application helping to improve your health based in smoothie recipes, this project is the server side, it is exposing recipes and beverages as API service using [Spring Framework](https://docs.spring.io/spring-framework/reference/web.html).
 
